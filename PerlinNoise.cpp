@@ -14,7 +14,9 @@ CPerlinNoiseGenerator_1D::CPerlinNoiseGenerator_1D(const CPerlinNoiseGenerator_1
 	m_persistence(ref.m_persistence),
 	m_seed(ref.m_seed)
 {
-	std::for_each(ref.m_random_funcs.begin, ref.m_random_funcs.end, addFunction);
+	std::for_each(ref.m_random_funcs.begin(), ref.m_random_funcs.end(), [this](std::function<int(int)>* fn) {
+		addFunction(fn);
+	});
 }
 
 // Fügt eine neue RNG-Generator Funktion hinzu
@@ -29,7 +31,7 @@ int CPerlinNoiseGenerator_1D::operator()(int x) const
 	int i = 0;
 	int val = 0;
 
-	std::for_each(m_random_funcs.begin, m_random_funcs.end, [=, &val, &i](std::function<int(int)>* func)
+	std::for_each(m_random_funcs.begin(), m_random_funcs.end(), [=, &val, &i](std::function<int(int)>* func)
 	{
 		int freq = std::pow(2, i);
 		double per = std::pow(m_persistence, i);
@@ -54,7 +56,9 @@ CPerlinNoiseGenerator_2D::CPerlinNoiseGenerator_2D(const CPerlinNoiseGenerator_2
 	m_persistence(ref.m_persistence),
 	m_seed(ref.m_seed)
 {
-	std::for_each(ref.m_random_funcs.begin, ref.m_random_funcs.end, addFunction);
+	std::for_each(ref.m_random_funcs.begin(), ref.m_random_funcs.end(), [this](std::function<int(int,int)>* fn) {
+		addFunction(fn);
+	});
 }
 
 // Fügt eine neue RNG-Generator Funktion hinzu
@@ -69,7 +73,7 @@ int CPerlinNoiseGenerator_2D::operator()(int x, int y) const
 	int i = 0;
 	int val = 0;
 
-	std::for_each(m_random_funcs.begin, m_random_funcs.end, [=, &val, &i](std::function<int(int, int)>* func)
+	std::for_each(m_random_funcs.begin(), m_random_funcs.end(), [=, &val, &i](std::function<int(int, int)>* func)
 	{
 		int freq = std::pow(2, i);
 		double per = std::pow(m_persistence, i);
@@ -94,7 +98,9 @@ CPerlinNoiseGenerator_3D::CPerlinNoiseGenerator_3D(const CPerlinNoiseGenerator_3
 	m_persistence(ref.m_persistence),
 	m_seed(ref.m_seed)
 {
-	std::for_each(ref.m_random_funcs.begin, ref.m_random_funcs.end, addFunction);
+	std::for_each(ref.m_random_funcs.begin(), ref.m_random_funcs.end(), [this](std::function<int(int, int, int)>* fn) {
+		addFunction(fn);
+	});
 }
 
 // Fügt eine neue RNG-Generator Funktion hinzu
@@ -109,7 +115,7 @@ int CPerlinNoiseGenerator_3D::operator()(int x, int y, int z) const
 	int i = 0;
 	int val = 0;
 
-	std::for_each(m_random_funcs.begin, m_random_funcs.end, [=, &val, &i](std::function<int(int, int, int)>* func)
+	std::for_each(m_random_funcs.begin(), m_random_funcs.end(), [=, &val, &i](std::function<int(int, int, int)>* func)
 	{
 		int freq = std::pow(2, i);
 		double per = std::pow(m_persistence, i);
