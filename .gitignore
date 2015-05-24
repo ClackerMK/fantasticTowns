@@ -188,3 +188,8 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/fantasticTowns.vcxproj.filters
+/fantasticTowns.vcxproj
+/fantasticTowns.pyproj
+/Volcanic_point_HeightMap.h
+/Volcanic_point_HeightMap.cpp
