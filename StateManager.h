@@ -22,6 +22,7 @@ public:
 	void					run();
 	void					pushState	(CState* state);
 	void					popState	();
+	void					popState	(CState* state);
 	void					switchState	(CState* state);
 };
 

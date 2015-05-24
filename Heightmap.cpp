@@ -149,7 +149,7 @@ double smooth_point(double** map, sf::Vector2i size, int radius, sf::Vector2i po
 void CHeightMap::smoothStretchHeightMap(int radius)
 {
 	// first just simply stretch the map
-	m_stretch(sf::Vector2f(radius / 2, radius / 2));
+	m_stretch(sf::Vector2f(radius , radius ));
 
 	// then smooth every new point
 	smoothHeightMap(radius);
