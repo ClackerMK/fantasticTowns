@@ -1,9 +1,9 @@
 #include "Heightmap.h"
 
 
-unsigned int CHeightMap::getMaxEle()
+int CHeightMap::getMaxEle() const
 {
-	unsigned int max;
+	int max;
 
 	// Was it already computed?
 	if (m_cached_maxEle.valid)
@@ -25,9 +25,9 @@ unsigned int CHeightMap::getMaxEle()
 	return m_cached_maxEle.value = max;
 }
 
-unsigned int CHeightMap::getMinEle()
+int CHeightMap::getMinEle() const
 {
-	unsigned int min;
+	int min;
 
 	// Was it already computed?
 	if (m_cached_minEle.valid)
@@ -49,9 +49,9 @@ unsigned int CHeightMap::getMinEle()
 	return m_cached_minEle.value = min;
 }
 
-double CHeightMap::getMeanEle()
+double CHeightMap::getMeanEle() const
 {
-	unsigned int total = 0;
+	int total = 0;
 
 	// Was it already computed?
 	if (m_cached_meanEle.valid)
@@ -69,10 +69,11 @@ double CHeightMap::getMeanEle()
 	return m_cached_meanEle.value = total / (m_size.x * m_size.y);
 }
 
-double CHeightMap::getMedianEle()
+double CHeightMap::getMedianEle() const
 {
-	std::vector<unsigned int> values;
+	std::vector<int> values;
 	double median = 0.;
+
 	// Was it already computed?
 	if (m_cached_medianEle.valid)
 		return m_cached_medianEle.value;
@@ -85,12 +86,12 @@ double CHeightMap::getMedianEle()
 		}
 	}
 	
-	std::sort(values.begin, values.end);
+	std::sort (values.begin(), values.end());
 
 	m_cached_meanEle.valid = true;
 
-	if (values.size % 2)
-		return m_cached_medianEle.value = values[(values.size + 1) / 2];
+	if (values.size() % 2)
+		return m_cached_medianEle.value = values[(values.size() + 1) / 2];
 	else
-		return m_cached_medianEle.value = (values[values.size / 2] + values[(values.size / 2) + 1]) / 2;
+		return m_cached_medianEle.value = (values[values.size() / 2] + values[(values.size() / 2) + 1]) / 2;
 }
