@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <opencv2\imgproc.hpp>
 #include <vector>
+#include <math.h>
 
 #include "State.h"
 #include "StateManager.h"

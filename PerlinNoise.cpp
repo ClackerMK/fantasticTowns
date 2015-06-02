@@ -26,7 +26,7 @@ void CPerlinNoiseGenerator_1D::addFunction (std::function<double(int)>* func)
 }
 
 // Returns the specified Value
-int CPerlinNoiseGenerator_1D::operator()(int x) const
+double CPerlinNoiseGenerator_1D::operator()(int x) const
 {
 	int i = 0;
 	int val = 0;
@@ -68,7 +68,7 @@ void CPerlinNoiseGenerator_2D::addFunction(std::function<double(int, int)>* func
 }
 
 // Returns the specified Value
-int CPerlinNoiseGenerator_2D::operator()(int x, int y) const
+double CPerlinNoiseGenerator_2D::operator()(int x, int y) const
 {
 	int i = 0;
 	int val = 0;
@@ -110,7 +110,7 @@ void CPerlinNoiseGenerator_3D::addFunction(std::function<double(int, int, int)>*
 }
 
 // Returns the specified Value
-int CPerlinNoiseGenerator_3D::operator()(int x, int y, int z) const
+double CPerlinNoiseGenerator_3D::operator()(int x, int y, int z) const
 {
 	int i = 0;
 	int val = 0;

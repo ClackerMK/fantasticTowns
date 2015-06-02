@@ -29,7 +29,7 @@ protected:
 	mutable cached<double>		m_cached_meanEle;
 	mutable cached<double>		m_cached_medianEle;
 
-	virtual double				m_interpolate(sf::Vector2f pos) = 0; // Interpolation function, implementation not given
+	virtual double				m_interpolate(sf::Vector2f pos) const = 0; // Interpolation function, implementation not given
 	void						m_stretch(sf::Vector2f factor);
 
 public:
@@ -39,7 +39,7 @@ public:
 			void	smoothHeightMap(int radius);
 	// Getter
 	sf::Vector2i	getSize() { return m_size; }
-	double			getValue(sf::Vector2f pos) { return m_map[int(pos.x)][int(pos.y)]; }//return m_interpolate(pos); }
+	double			getValue(sf::Vector2f pos) const { return m_interpolate(pos); }
 	double			getMinEle() const;
 	double			getMaxEle() const;
 	double			getMeanEle()const;

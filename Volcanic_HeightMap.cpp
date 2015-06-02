@@ -89,8 +89,26 @@ void CVolcanic_HeightMap::generate()
 {
 
 	int x, y, c = 0, cp = 0;
-	std::srand(m_seed);
+	
+	// Initialize Randomizer
+	
+	if (m_seed == -1)
+	{
+		std::random_device rand;
+		m_randGenerator = std::mt19937(rand());
+	}
+	else
+	{
+		m_randGenerator = std::mt19937(m_seed);
+	}
 
+	// Define needed Distributions
+	std::uniform_int_distribution<> map_dist_X(0, m_size.x-1);
+	std::uniform_int_distribution<> map_dist_Y(0, m_size.y-1);
+	std::uniform_int_distribution<> stones_amount(m_stones_size_min, m_stones_size_max);
+
+
+	// Reset Cache
 	m_cached_maxEle.valid = false;
 	m_cached_minEle.valid = false;
 	m_cached_meanEle.valid = false;
@@ -106,11 +124,11 @@ void CVolcanic_HeightMap::generate()
 
 	for (int i = 0; i < m_stones; i++)
 	{
-		x = std::rand() % m_size.x;
-		y = std::rand() % m_size.x;
+		x = map_dist_X(m_randGenerator);
+		y = map_dist_Y(m_randGenerator);
 		
 		
-		for (int z = m_stones_size_min + (std::rand() % (m_stones_size_max - m_stones_size_min + 1)); z >= 0; z--)
+		for (int z = stones_amount(m_randGenerator); z >= 0; z--)
 		{
 			rollingStones(sf::Vector2i(x, y));
 		}
@@ -129,8 +147,7 @@ void CVolcanic_HeightMap::rollingStones(sf::Vector2i pos)
 {
 	int min_x, min_y, max_x, max_y;
 	std::vector<sf::Vector2i> smaler;
-
-
+	
 	min_x = pos.x - m_stability_rad;
 	min_y = pos.y - m_stability_rad;
 	max_x = pos.x + m_stability_rad;
@@ -153,15 +170,17 @@ void CVolcanic_HeightMap::rollingStones(sf::Vector2i pos)
 	if (smaler.size() == 0)
 		m_map[pos.x][pos.y]++;
 	else
-		rollingStones(smaler[rand() % smaler.size()]);
+		rollingStones(smaler[std::uniform_int_distribution<>(0,smaler.size()-1)(m_randGenerator)]);
 }
 
-double CVolcanic_HeightMap::m_interpolate(sf::Vector2f pos)
+double CVolcanic_HeightMap::m_interpolate(sf::Vector2f pos) const
 {
 	std::pair<int, int> range_x = std::pair<int,int>(std::floor(pos.x), std::ceil(pos.x));
 	std::pair<int, int> range_y = std::pair<int, int>(std::floor(pos.y), std::ceil(pos.y));
 	
-	
+	if (range_x.first == range_x.second && range_y.first == range_y.second)
+		return m_map[range_x.first][range_y.first];
+
 	double R1 = ((range_x.second - pos.x) * m_map[range_x.first][range_y.first]) + ((pos.x - range_x.first) * m_map[range_x.second][range_y.first]);
 	double R2 = ((range_x.second - pos.x) * m_map[range_x.first][range_y.second]) + ((pos.x - range_x.first) * m_map[range_x.second][range_y.second]);
 

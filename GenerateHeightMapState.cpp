@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+double getLength(sf::Vector2f vec)
+{
+	return std::sqrt(vec.x * vec.x + vec.y * vec.y);
+}
 
 CGenerateHeightMapState::CGenerateHeightMapState():
 	m_map(sf::Vector2i(80,80))
@@ -50,9 +54,9 @@ void CGenerateHeightMapState::on_Enter() {
 	m_map_Sprite.setTexture(m_map_renderTexture.getTexture());
 
 	std::cout << "Start Contours" << std::endl;
-	cv::Mat _map(cv::Size2d(m_map.getSize().x,m_map.getSize().y),cv::DataType<uchar>::type);
+	cv::Mat _map(cv::Size2d(m_map.getSize().x,m_map.getSize().y), cv::DataType<uchar>::type);
 	std::vector<std::vector<cv::Point>> contours;
-	for (double thresh = m_map.getMinEle()+0.5; thresh < m_map.getMaxEle(); thresh += 0.75)
+	for (double thresh = m_map.getMinEle()+0.5; thresh < m_map.getMaxEle(); thresh += 1)
 	{
 		for (int x = 0; x< m_map.getSize().x; x++)
 		{
@@ -63,7 +67,7 @@ void CGenerateHeightMapState::on_Enter() {
 					_map.at<uchar>(y, x) = 2;
 					
 		}
-		cv::findContours(_map, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
+		cv::findContours(_map, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
 		for (std::vector<std::vector<cv::Point >>::const_iterator it = contours.begin();
 			it != contours.end();
 			it++)
@@ -86,8 +90,8 @@ void CGenerateHeightMapState::on_Enter() {
 	}
 	std::cout << "Finished Contours" << std::endl;
 	std::cout << "Start Drawing Contours" << std::endl;
-	line.setPersistence(0.2);
-	line.setSamples(1);
+	line.setPersistence(0.5);
+	
 	
 	for (std::vector<std::vector<sf::Vector2f>>::const_iterator it = m_contours.begin();
 	it != m_contours.end();
@@ -105,6 +109,8 @@ void CGenerateHeightMapState::on_Enter() {
 			else
 			{
 				line.setPoints(line.getPoint2(), *point_it);
+				line.setNoiseSamples(static_cast<int>(getLength(line.getPoint1() - line.getPoint2()))/ 20);
+				line.setInterpolationSamples(2 + line.getNoiseSamples() * 15);
 				m_lines_renderTexture.draw(line);
 			}
 		}

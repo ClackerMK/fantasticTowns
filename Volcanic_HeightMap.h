@@ -17,9 +17,11 @@ class CVolcanic_HeightMap :
 	int				m_stability_rad;	// Radius in which the stones may fall down
 	float			m_drawingSize;		// The Size of a single Field
 
-	double			m_interpolate(sf::Vector2f pos);
+	double			m_interpolate(sf::Vector2f pos) const;
 
 	void			rollingStones(sf::Vector2i pos);
+
+	std::mt19937	m_randGenerator;
 public:
 	CVolcanic_HeightMap(sf::Vector2i size);
 	CVolcanic_HeightMap(sf::Vector2i size, unsigned int seed);
@@ -36,7 +38,7 @@ public:
 		{
 			for (int y = 0; y < m_size.y; y++)
 			{
-				clr.b = clr.g = clr.r = static_cast<sf::Uint8>(static_cast<double>(m_map[x][y]-getMinEle()) / static_cast<double>(getMaxEle()-getMinEle()) * 255);
+				clr.b = clr.g = clr.r = static_cast<sf::Uint8>((getValue(sf::Vector2f(x,y))-getMinEle()) / static_cast<double>(getMaxEle()-getMinEle()) * 255);
 				rect.setPosition(sf::Vector2f(x * m_drawingSize, y * m_drawingSize));
 				rect.setFillColor(clr);
 				trgt.draw(rect,states);
