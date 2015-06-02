@@ -39,7 +39,7 @@ public:
 			void	smoothHeightMap(int radius);
 	// Getter
 	sf::Vector2i	getSize() { return m_size; }
-	double			getValue(sf::Vector2f pos) { return m_interpolate(pos); }
+	double			getValue(sf::Vector2f pos) { return m_map[int(pos.x)][int(pos.y)]; }//return m_interpolate(pos); }
 	double			getMinEle() const;
 	double			getMaxEle() const;
 	double			getMeanEle()const;

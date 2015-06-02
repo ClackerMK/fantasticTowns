@@ -56,14 +56,13 @@ void CStateManager::Update(sf::Time t)
 
 void CStateManager::Render()
 {
-	m_Window->clear();
+	m_Window->clear(sf::Color::White);
 
 
-	for (std::list<CState*>::iterator it = --m_states.end(); it != m_states.begin(); it--)
+	for (std::list<CState*>::reverse_iterator it = m_states.rbegin(); it != m_states.rend(); it++)
 	{
 		(*it)->on_Render(m_Window);
 	}
-	(*m_states.begin())->on_Render(m_Window);
 
 	m_Window->display();
 }

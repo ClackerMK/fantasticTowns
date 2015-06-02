@@ -36,7 +36,7 @@ public:
 		{
 			for (int y = 0; y < m_size.y; y++)
 			{
-				clr.b = clr.g = clr.r = 255 - static_cast<sf::Uint8>(static_cast<double>(m_map[x][y]) / static_cast<double>(getMaxEle()) * 255);
+				clr.b = clr.g = clr.r = static_cast<sf::Uint8>(static_cast<double>(m_map[x][y]-getMinEle()) / static_cast<double>(getMaxEle()-getMinEle()) * 255);
 				rect.setPosition(sf::Vector2f(x * m_drawingSize, y * m_drawingSize));
 				rect.setFillColor(clr);
 				trgt.draw(rect,states);

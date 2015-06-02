@@ -83,8 +83,11 @@ CVolcanic_HeightMap::~CVolcanic_HeightMap()
 	delete[] m_map;
 }
 
+
+// Generates the Heightmap
 void CVolcanic_HeightMap::generate()
 {
+
 	int x, y, c = 0, cp = 0;
 	std::srand(m_seed);
 

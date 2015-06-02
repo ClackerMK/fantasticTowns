@@ -9,13 +9,13 @@
 class CPerlinNoiseGenerator_1D
 {
 private:
-	std::vector<std::function<int(int)>*>	m_random_funcs;
+	std::vector<std::function<double(int)>*>	m_random_funcs;
 	double									m_persistence;
 	unsigned int							m_seed;
 public:
 			CPerlinNoiseGenerator_1D();
 			CPerlinNoiseGenerator_1D(const CPerlinNoiseGenerator_1D& ref);
-	void	addFunction(std::function<int(int)>* func);
+	void	addFunction(std::function<double(int)>* func);
 	int		operator()(int) const;
 
 	// Getter
@@ -31,13 +31,13 @@ public:
 class CPerlinNoiseGenerator_2D
 {
 private:
-	std::vector<std::function<int(int,int)>*>	m_random_funcs;
+	std::vector<std::function<double(int,int)>*>	m_random_funcs;
 	double										m_persistence;
 	unsigned int								m_seed;
 public:
 	CPerlinNoiseGenerator_2D();
 	CPerlinNoiseGenerator_2D(const CPerlinNoiseGenerator_2D& ref);
-	void	addFunction(std::function<int(int,int)>* func);
+	void	addFunction(std::function<double(int,int)>* func);
 	int		operator()(int, int) const;
 
 	// Getter
@@ -53,13 +53,13 @@ public:
 class CPerlinNoiseGenerator_3D
 {
 private:
-	std::vector<std::function<int(int, int, int)>*>	m_random_funcs;
+	std::vector<std::function<double(int, int, int)>*>	m_random_funcs;
 	double										m_persistence;
 	unsigned int								m_seed;
 public:
 	CPerlinNoiseGenerator_3D();
 	CPerlinNoiseGenerator_3D(const CPerlinNoiseGenerator_3D& ref);
-	void	addFunction(std::function<int(int, int, int)>* func);
+	void	addFunction(std::function<double(int, int, int)>* func);
 	int		operator()(int, int, int) const;
 
 	// Getter
