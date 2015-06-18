@@ -1,48 +1,48 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>
-#include <map>
 #include <vector>
+#include <algorithm>
 
+#include "RoadNode.h"
 #include "Heightmap.h"
 #include "Rivers.h"
+#include "utils.h"
+#include "NodeSampleAlgs.h"
 
-class CRoads
+class CRoads : public sf::Drawable
 {
 private:
 	CHeightMap*							m_HeightMap;
 	
-	std::map <int, sf::Vector2f>		m_PrimaryNodeList;
-	std::map <int, std::vector<int> >	m_PrimaryRoadGraph;
+	std::vector<CRoadNode>				m_PrimaryNodeList;
 
-	std::map <int, sf::Vector2f>		m_SecondaryNodeList;
-	std::map <int, std::vector<int> >	m_SecondaryRoadGraph;
+	std::vector<CRoadNode>				m_SecondaryNodeList;
 
-	double								m_Snap_Range;
 	std::pair<double, double>			m_Node_Dist_Range;
 	int									m_numNodes;
+	int									m_numEdgesDeviation;
 	int									m_numEdges;
 
 	int									m_seed;
 public:
-	enum SAMPLE_MODE
-	{
-
-	};
+	
 										CRoads(CHeightMap* map, int seed = -1);
 										CRoads(const CRoads& ref);
 										
-	void								generate(CRivers* river, double sea_level, SAMPLE_MODE mode, sf::RenderTarget* trgt = null );
+	void								generate(const CRivers& rivers, double sea_level, SAMPLE_MODE mode, sf::RenderTarget* trgt = NULL);
 
+	void								draw(sf::RenderTarget& trgt, sf::RenderStates states) const;
+	
 	// Getter
-	double	getSnap_Range() const			{ return m_Snap_Range; }
+	double	getDeviation() const			{ return m_numEdgesDeviation; }
 	double	getNode_Dist_Range_min() const	{ return m_Node_Dist_Range.first; }
 	double	getNode_Dist_Range_max() const	{ return m_Node_Dist_Range.second; }
 	int		getNumNodes() const				{ return m_numNodes; }
 	int		getNumEdges() const				{ return m_numEdges; }
 
 	// Setter
-	void setSnap_Range(double snaprange)	{ m_Snap_Range = snaprange; }
+	void setDeviation(int dev)				{ m_numEdgesDeviation = dev; }
 	void setNode_Dist_Range_min(double min) { m_Node_Dist_Range.first = min; }
 	void setNode_Dist_Range_max(double max) { m_Node_Dist_Range.second = max; }
 	void setNumNodes(int nodes)				{ m_numNodes = nodes; }
