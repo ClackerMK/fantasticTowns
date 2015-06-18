@@ -13,7 +13,7 @@ class CGenerateHeightMapState :
 	public CState
 {
 private:
-	CVolcanic_HeightMap						m_map;
+	CVolcanic_HeightMap*					m_map;
 	std::vector<std::vector<sf::Vector2f>>	m_contours;
 	sf::RectangleShape						m_shp;
 	sf::RenderTexture						m_lines_renderTexture;
