@@ -5,10 +5,10 @@ Fantastic Towns
 Fantastic Towns is a WIP prozedural Generator for Fantasy Towns for use in RPGs mostly following [this](http://www.gamesitb.com/citygen_gdtw07.pdf) paper.
 
 <h2>Features</h2>
-[x] Heightmap Generation
-[] Streetmap Generation
-[] Building Generation
-[] History Generation
+- [x] Heightmap Generation
+- [ ] Streetmap Generation
+- [ ] Building Generation
+- [ ] History Generation
 
 so all in all a whole shit-ton of generation
 
