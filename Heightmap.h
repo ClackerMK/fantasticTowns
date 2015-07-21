@@ -5,13 +5,13 @@
 #include <math.h>
 
 // CHeightMap
-// Abstract Class for storing and generating of Heightmaps
-
-
+// Class for storing and modifying of height maps
 class CHeightMap :
 	public sf::Drawable
 {
 protected:
+	int				m_drawingSize;
+
 	double**		m_map;
 	sf::Vector2i	m_size;
 
@@ -29,14 +29,21 @@ protected:
 	mutable cached<double>		m_cached_meanEle;
 	mutable cached<double>		m_cached_medianEle;
 
-	virtual double				m_interpolate(sf::Vector2f pos) const = 0; // Interpolation function, implementation not given
+	double						m_interpolate(sf::Vector2f pos) const;
 	void						m_stretch(sf::Vector2f factor);
 
 public:
+	// Constructor and Destructor
+	CHeightMap(int x, int y);
+	~CHeightMap();
+
+	// Smoothing
+	void			smoothStretchHeightMap(int radius);
+	void			smoothHeightMap(int radius);
 	
-	virtual void	generate()		= 0;
-			void	smoothStretchHeightMap(int radius);
-			void	smoothHeightMap(int radius);
+	// Drawing
+	void			draw(sf::RenderTarget& trgt, sf::RenderStates states) const;
+
 	// Getter
 	sf::Vector2i	getSize() { return m_size; }
 	double			getValue(sf::Vector2f pos) const { return m_interpolate(pos); }
@@ -44,6 +51,7 @@ public:
 	double			getMaxEle() const;
 	double			getMeanEle()const;
 	double			getMedianEle()const;
+	int				getDrawingSize()const { return m_drawingSize; }
 
 	// Setter
 	void setValue(sf::Vector2u pos, int val) { 
@@ -56,5 +64,6 @@ public:
 		m_cached_meanEle.valid = false;
 		m_cached_medianEle.valid = false;
 	}
+	void setDrawingSize(int size) { m_drawingSize = size; }
 };
 
