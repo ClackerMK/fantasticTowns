@@ -26,7 +26,7 @@ int leastEleveationDifferenceSelection(const std::vector<float> &elevations, flo
 {
 	if (elevations.size() == 0)
 		return -1;
-
+	
 	float min_diff = abs(last - elevations[0]);
 	int x = 0;
 

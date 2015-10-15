@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <random>
 #include <math.h>
 #include <iostream>
@@ -16,8 +16,6 @@ private:
 	int				m_stones_size_min;	// Minimum Size of single deposit
 	int				m_stones_size_max;	// Maximum Size of single deposit
 	int				m_stability_rad;	// Radius in which the stones may fall down
-
-	sf::RenderWindow* m_trgt;			// RenderWindow on which the map will be drawn on while generation
 	
 
 	void			rollingStones(CHeightMap* map, sf::Vector2i pos);
@@ -30,15 +28,14 @@ public:
 	virtual void operator()(CHeightMap* map, int seed);
 
 	// Getter
-	int			 getStones() const { return m_stones; }
-	int			 getMinStoneSize() const { return m_stones_size_min; }
-	int			 getMaxStoneSize() const { return m_stones_size_max; }
-	int			 getStability() const { return m_stability_rad; }
+	int		getStones() const 		{ return m_stones; }
+	int		getMinStoneSize() const	{ return m_stones_size_min; }
+	int		getMaxStoneSize() const	{ return m_stones_size_max; }
+	int		getStability() const 	{ return m_stability_rad; }
 	
 	// Setter
-	void setStones(int stones) { m_stones = stones; }
-	void setMinStoneSize(int minSize) { m_stones_size_min = minSize; }
-	void setMaxStoneSize(int maxSize) { m_stones_size_max = maxSize; }
-	void setStability(int stab) { m_stability_rad = stab; }
-	void setRenderTarget(sf::RenderWindow* trgt) { m_trgt = trgt; }
+	void 	setStones(int stones)		{ m_stones = stones; }
+	void 	setMinStoneSize(int minSize)			{ m_stones_size_min = minSize; }
+	void 	setMaxStoneSize(int maxSize)			{ m_stones_size_max = maxSize; }
+	void 	setStability(int stab) 					{ m_stability_rad = stab; }
 };

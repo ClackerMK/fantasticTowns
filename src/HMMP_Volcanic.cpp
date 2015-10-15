@@ -5,8 +5,7 @@ HMMP_Volcanic::HMMP_Volcanic() :
 	m_stones(0),
 	m_stones_size_min(0),
 	m_stones_size_max(0),
-	m_stability_rad(0),
-	m_trgt(NULL)
+	m_stability_rad(0)
 {
 
 }
@@ -46,9 +45,9 @@ void HMMP_Volcanic::operator()(CHeightMap* map, int seed)
 			rollingStones(map, sf::Vector2i(x, y));
 		}
 
-		m_trgt->clear();
-		m_trgt->draw(*map);
-		m_trgt->display();
+		//m_trgt->clear();
+		//m_trgt->draw(*map);
+		//m_trgt->display();
 	}
 }
 

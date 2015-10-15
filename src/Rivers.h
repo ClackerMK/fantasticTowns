@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RIVERS_H
+#define RIVERS_H
 class CRivers
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~CRivers();
 };
 
+#endif

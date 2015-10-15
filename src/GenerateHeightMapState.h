@@ -1,19 +1,24 @@
 #pragma once
-#include <SFML\Graphics.hpp>
-#include <opencv2\imgproc.hpp>
+#include <SFML/Graphics.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 #include <vector>
 #include <math.h>
 
 #include "State.h"
 #include "StateManager.h"
 
-#include "Volcanic_HeightMap.h"
+#include "Heightmap.h"
+#include "HeightMapGenerator.h"
+
+#include "HMMP_Volcanic.h"
+
 
 class CGenerateHeightMapState :
 	public CState
 {
 private:
-	CVolcanic_HeightMap*					m_map;
+	CHeightMap*								m_map;
+	CHeightMapGenerator*					m_mapGenerator;
 	std::vector<std::vector<sf::Vector2f>>	m_contours;
 	sf::RectangleShape						m_shp;
 	sf::RenderTexture						m_lines_renderTexture;

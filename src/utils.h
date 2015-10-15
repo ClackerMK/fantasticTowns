@@ -2,7 +2,7 @@
 
 #include <random>
 #include <math.h>
-#include <SFML\System.hpp>
+#include <SFML/System.hpp>
 
 namespace util{
 	template<typename T>

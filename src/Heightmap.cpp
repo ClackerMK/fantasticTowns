@@ -4,7 +4,7 @@
 CHeightMap::CHeightMap(int x, int y):
 	m_size(x,y)
 {
-	m_drawingSize = 0;
+	m_drawingSize = 1;
 	m_map = new double*[x];
 	for (int ix = 0; ix < x; ix++)
 	{

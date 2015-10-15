@@ -1,5 +1,15 @@
 #include "HeightMapGenerator.h"
 
+CHeightMapGenerator::CHeightMapGenerator()
+{
+
+}
+
+CHeightMapGenerator::~CHeightMapGenerator()
+{
+	
+}
+
 CHeightMap* CHeightMapGenerator::generate(int seed, sf::Vector2i size)
 {
 	CHeightMap* op = new CHeightMap(size.x, size.y);

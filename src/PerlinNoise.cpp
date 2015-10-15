@@ -35,7 +35,7 @@ double CPerlinNoiseGenerator_1D::operator()(int x) const
 	{
 		int freq = std::pow(2, i);
 		double per = std::pow(m_persistence, i);
-		val += (*func)(freq * (m_seed + x)) * std::pow(m_persistence, i);
+		val += (*func)(freq * (m_seed + x)) * per;
 		i++;
 	});
 
@@ -77,7 +77,7 @@ double CPerlinNoiseGenerator_2D::operator()(int x, int y) const
 	{
 		int freq = std::pow(2, i);
 		double per = std::pow(m_persistence, i);
-		val += (*func)(freq * (m_seed + x),freq * (m_seed + y)) * std::pow(m_persistence, i);
+		val += (*func)(freq * (m_seed + x),freq * (m_seed + y)) * per;
 		i++;
 	});
 
@@ -119,7 +119,7 @@ double CPerlinNoiseGenerator_3D::operator()(int x, int y, int z) const
 	{
 		int freq = std::pow(2, i);
 		double per = std::pow(m_persistence, i);
-		val += (*func)(freq * (m_seed + x), freq * (m_seed + y), freq * (m_seed + z)) * std::pow(m_persistence, i);
+		val += (*func)(freq * (m_seed + x), freq * (m_seed + y), freq * (m_seed + z)) * per;
 		i++;
 	});
 

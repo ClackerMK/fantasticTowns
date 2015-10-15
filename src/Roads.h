@@ -1,6 +1,7 @@
-#pragma once
+#ifndef ROADS_H
+#define ROADS_H
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <vector>
 #include <algorithm>
 
@@ -50,3 +51,5 @@ public:
 
 	void setHeightMap(CHeightMap* map)		{ m_HeightMap = map; }
 };
+
+#endif

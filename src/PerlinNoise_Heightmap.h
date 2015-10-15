@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPERLINNOISEHEIGHTMAP_H
+#define CPERLINNOISEHEIGHTMAP_H
 
 #include "Heightmap.h"
 #include "PerlinNoise.h"
@@ -40,3 +41,4 @@ public:
 		}
 	}
 };
+#endif

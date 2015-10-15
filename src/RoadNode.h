@@ -1,6 +1,7 @@
-#pragma once
+#ifndef ROADNODE_H
+#define ROADNODE_H
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <set>
 
 // Road Node Class
@@ -41,3 +42,5 @@ public:
 	void			setRenderBorderThicknes(float r)	{ m_Shape.setOutlineThickness(r); }
 	void			setColor(sf::Color clr)				{ m_Shape.setOutlineColor(clr); }
 };
+
+#endif 
