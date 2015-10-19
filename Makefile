@@ -9,6 +9,7 @@ SRC_PATH=/home/dave/Projects/fantasticTowns/src
 # Objects
 OBJS=$(SRC_PATH)/GenerateHeightMapState.o \
 	$(SRC_PATH)/HMMP_Volcanic.o \
+	$(SRC_PATH)/HMMP_Erosion.o \
 	$(SRC_PATH)/HeightMapGenerator.o \
 	$(SRC_PATH)/Heightmap.o \
 	$(SRC_PATH)/NodeSampleAlgs.o \

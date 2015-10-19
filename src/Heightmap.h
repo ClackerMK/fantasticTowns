@@ -45,8 +45,9 @@ public:
 	void			draw(sf::RenderTarget& trgt, sf::RenderStates states) const;
 
 	// Getter
-	sf::Vector2i	getSize() { return m_size; }
+	sf::Vector2i	getSize() const { return m_size; }
 	double			getValue(sf::Vector2f pos) const { return m_interpolate(pos); }
+	double 			getValue(sf::Vector2i pos) const { return m_map[pos.x][pos.y]; }
 	double			getMinEle() const;
 	double			getMaxEle() const;
 	double			getMeanEle()const;

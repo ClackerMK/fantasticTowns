@@ -26,6 +26,7 @@ fantasticTowns
 *.log
 *.sql
 *.sqlite
+*.d
 
 # OS generated files #
 ######################
@@ -35,6 +36,8 @@ fantasticTowns
 .Spotlight-V100
 .Trashes
 .tags
+.tags_sorted_by_file
+
 ehthumbs.db
 Thumbs.db
 

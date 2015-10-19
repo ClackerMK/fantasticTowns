@@ -21,7 +21,15 @@ CGenerateHeightMapState::CGenerateHeightMapState()
 	process->setStability(1);
 	process->setStones(2000);
 
+	HMMP_Erosion* process2 = new HMMP_Erosion;
+	process2->setCapacity(2);
+	process2->setIterations(1000);
+	process2->setSolubility(4);
+	process2->setRainAmount(5);
+	process2->setEvaporation(0.6);
+
 	m_mapGenerator->pushProcess(process);
+	m_mapGenerator->pushProcess(process2);
 
 	// Initialize Shape
 	m_shp.setFillColor(sf::Color::White);
@@ -34,7 +42,7 @@ CGenerateHeightMapState::CGenerateHeightMapState()
 
 	m_lines_renderTexture.clear();
 	m_lines_renderTexture.create(800, 800);
-	m_map_renderTexture.clear(sf::Color::White);
+	m_map_renderTexture.clear(sf::Color::White); 
 	m_map_renderTexture.create(800, 800);
 }
 

@@ -3,6 +3,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <vector>
 #include <math.h>
+#include <random>
 
 #include "State.h"
 #include "StateManager.h"
@@ -11,7 +12,7 @@
 #include "HeightMapGenerator.h"
 
 #include "HMMP_Volcanic.h"
-
+#include "HMMP_Erosion.h"
 
 class CGenerateHeightMapState :
 	public CState
