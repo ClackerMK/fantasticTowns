@@ -5,7 +5,9 @@ CC_FLAGS=-Wall -std=c++11 -g
 # Libaries
 LIB_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system -lopencv_imgproc -lopencv_core
 # Source Path
-SRC_PATH=/home/dave/Projects/fantasticTowns/src
+SRC_PATH=./src
+# Output Path
+O_PATH=./bin
 # Objects
 OBJS=$(SRC_PATH)/GenerateHeightMapState.o \
 	$(SRC_PATH)/HMMP_Volcanic.o \
@@ -30,7 +32,7 @@ all: $(OP)
 
 
 $(OP): $(OBJS)
-	$(CC) $(CC_FLAGS) $(OBJS) -o fantasticTowns $(LIB_FLAGS)
+	$(CC) $(CC_FLAGS) $(OBJS) -o $(O_PATH)/$(OP) $(LIB_FLAGS)
 
 # compile and generate dependency info;
 # more complicated dependency computation, so all prereqs listed
