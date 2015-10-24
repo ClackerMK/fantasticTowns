@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <random>
+#include <math.h>
+#include <SFML/Graphics.hpp>
 
 #include "HeightMapModificationProcess.h"
 

@@ -23,24 +23,65 @@ std::vector<sf::Vector2i> getLowest_vNeumann (const CHeightMap *map, const std::
 	sf::Vector2i check_trgt;
 	int value1 = 0, value2 = 0;
 
-	value2 = water[pos.x][pos.y] + static_cast<int>(map->getValue(sf::Vector2i(pos.x,pos.y)));
+	value2 = water[pos.x][pos.y] + std::round(map->getValue(sf::Vector2i(pos.x,pos.y)));
 
 	check_trgt.x = pos.x - 1;
-	for (sf::Vector2i p :  {sf::Vector2i(pos.x - 1, pos.y - 1),
+	for (sf::Vector2i p :  {sf::Vector2i(pos.x, pos.y - 1),
+							sf::Vector2i(pos.x, pos.y + 1),
+							sf::Vector2i(pos.x + 1, pos.y),
+							sf::Vector2i(pos.x + 1, pos.y)})
+	{
+		if (p.x >= 0 && p.x < map->getSize().x && p.y >= 0 && p.y < map->getSize().y)
+		{
+			value1 = water[p.x][p.y] + std::round(map->getValue(sf::Vector2i(p.x,p.y)));
+			if (value1 < value2)
+			{
+				if (ret.size() == 0)
+					ret.push_back(p);
+				else if (std::round(map->getValue(ret[0])) + water[ret[0].x][ret[0].y] == value1)
+					ret.push_back(p);
+				else if (std::round(map->getValue(ret[0])) + water[ret[0].x][ret[0].y] > value2)
+				{
+					ret.clear();
+					ret.push_back(p);
+				}
+			}
+		}
+	}
+
+	return ret;
+}
+
+// return the lowest Points in the Moore Neighbourhood
+// only returns points lower than the chosen point
+std::vector<sf::Vector2i> getLowest_Moore (const CHeightMap *map, const std::vector<std::vector<int>>& water, sf::Vector2i pos)
+{
+	std::vector<sf::Vector2i> ret;
+	sf::Vector2i check_trgt;
+	int value1 = 0, value2 = 0;
+
+	value2 = water[pos.x][pos.y] + std::round(map->getValue(sf::Vector2i(pos.x,pos.y)));
+
+	check_trgt.x = pos.x - 1;
+	for (sf::Vector2i p :  {sf::Vector2i(pos.x, pos.y - 1),
+							sf::Vector2i(pos.x, pos.y + 1),
+							sf::Vector2i(pos.x + 1, pos.y),
+							sf::Vector2i(pos.x + 1, pos.y),
+							sf::Vector2i(pos.x - 1, pos.y - 1),
 							sf::Vector2i(pos.x - 1, pos.y + 1),
 							sf::Vector2i(pos.x + 1, pos.y - 1),
 							sf::Vector2i(pos.x + 1, pos.y + 1)})
 	{
 		if (p.x >= 0 && p.x < map->getSize().x && p.y >= 0 && p.y < map->getSize().y)
 		{
-			value1 = water[p.x][p.y] + static_cast<int>(map->getValue(sf::Vector2i(p.x,p.y)));
+			value1 = water[p.x][p.y] + std::round(map->getValue(sf::Vector2i(p.x,p.y)));
 			if (value1 < value2)
 			{
 				if (ret.size() == 0)
 					ret.push_back(p);
-				else if (static_cast<int>(map->getValue(ret[0])) + water[ret[0].x][ret[0].y] == value1)
+				else if (std::round(map->getValue(ret[0])) + water[ret[0].x][ret[0].y] == value1)
 					ret.push_back(p);
-				else if (static_cast<int>(map->getValue(ret[0])) + water[ret[0].x][ret[0].y] > value2)
+				else if (std::round(map->getValue(ret[0])) + water[ret[0].x][ret[0].y] > value2)
 				{
 					ret.clear();
 					ret.push_back(p);
@@ -58,6 +99,16 @@ void HMMP_Erosion::operator()(CHeightMap *map, int seed)
 	// Map Size
 	const std::size_t size_x = map->getSize().x;
 	const std::size_t size_y = map->getSize().y;
+
+	// Render Target
+	sf::RenderWindow* wndw = new sf::RenderWindow(sf::VideoMode(map->getSize().x, map->getSize().y,32),"Erosion");
+	
+	// Timer to limit drawing
+	sf::Clock clk;
+
+	wndw->clear(sf::Color::White);
+	wndw->draw(*map);
+	wndw->display();
 
 	// number of iterations
 	int n = 0;
@@ -131,14 +182,34 @@ void HMMP_Erosion::operator()(CHeightMap *map, int seed)
 
 					sf::Vector2i selection = lwstNeighbours[dist(RNG)];
 
-					if (static_cast<int>(map->getValue(selection)) + water_map[selection.x][selection.y] < static_cast<int>(map->getValue(sf::Vector2i(x,y))))
+					if (std::round(map->getValue(selection)) + water_map[selection.x][selection.y] < std::round(map->getValue(sf::Vector2i(x,y))))
 					{
 						water_map[selection.x][selection.y] += water_map[x][y];
+
+						if (water_map[x][y] * m_solubility > sedimentary_map[x][y])
+						{
+						//	sedimentary_map[selection.x][selection.y] += sedimentary_map[x][y];
+						//	sedimentary_map[x][y] = 0;
+						} else
+						{
+						//	sedimentary_map[selection.x][selection.y] += water_map[x][y] * m_solubility;
+						//	sedimentary_map[x][y] -= water_map[x][y] * m_solubility;
+						}
 						water_map[x][y] = 0; 
 					} else 
 					{
-						int diff = (water_map[x][y] + static_cast<int>(map->getValue(sf::Vector2i(x,y))) - static_cast<int>(map->getValue(selection)) - water_map[selection.x][selection.y])/2;
+						int diff = (water_map[x][y] + std::round(map->getValue(sf::Vector2i(x,y))) - (std::round(map->getValue(selection)) + water_map[selection.x][selection.y]))/2;
 						water_map[selection.x][selection.y] += diff;
+						
+						if (diff * m_solubility > sedimentary_map[x][y])
+						{
+						//	sedimentary_map[selection.x][selection.y] += sedimentary_map[x][y];
+						//	sedimentary_map[x][y] = 0;
+						} else
+						{
+						//	sedimentary_map[selection.x][selection.y] += diff * m_solubility;
+						//	sedimentary_map[x][y] -= diff * m_solubility;
+						}
 						water_map[x][y] -= diff; 
 					}
 				}				
@@ -150,7 +221,7 @@ void HMMP_Erosion::operator()(CHeightMap *map, int seed)
 		{
 			for (int y = 0; y < size_y; ++y)
 			{
-				int evaporated_water = water_map[x][y] * m_evaporation;
+				int evaporated_water = std::round(static_cast<double>(water_map[x][y]) * m_evaporation);
 				water_map[x][y] -= evaporated_water;
 
 				if (sedimentary_map[x][y] <= evaporated_water * m_capacity)
@@ -166,8 +237,16 @@ void HMMP_Erosion::operator()(CHeightMap *map, int seed)
 				difference_map[x][y] = 0;
 			}
 		}
-	
+		
 		n++;
-	}
+		if (clk.getElapsedTime() > sf::milliseconds(1))
+		{
+			wndw->clear(sf::Color::White);
+			wndw->draw(*map);
+			wndw->display();
 
+			clk.restart();
+		}
+	}
+	delete wndw;
 }
