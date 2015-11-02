@@ -3,7 +3,7 @@ CC=g++
 # Flags
 CC_FLAGS=-Wall -std=c++11 -g
 # Libaries
-LIB_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system -lopencv_imgproc -lopencv_core
+LIB_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system -lopencv_imgproc -lopencv_core -lnoise
 # Source Path
 SRC_PATH=./src
 # Output Path
