@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.h.ghc
 fantasticTowns
 
 # Packages #
