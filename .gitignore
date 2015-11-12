@@ -46,4 +46,9 @@ Thumbs.db
 #######################
 *.sublime-*
 
-
+# qt-creator Files    #
+#######################
+*.config
+*.includes
+*.files
+*.creator
