@@ -57,10 +57,15 @@ public:
 	// Setter
 	void setValue(sf::Vector2u pos, int val) { 
 		m_map[pos.x][pos.y] = val;
-		if (m_cached_minEle.valid && m_cached_minEle.value < val)
-			m_cached_minEle.value = val;
+
+		if (m_cached_maxEle.valid && m_cached_maxEle.value < val)
+			m_cached_maxEle.value = val;
+		else
+			m_cached_maxEle.valid = false;
 		if (m_cached_minEle.valid && m_cached_minEle.value > val)
 			m_cached_minEle.value = val;
+		else
+			m_cached_minEle.valid = false;
 
 		m_cached_meanEle.valid = false;
 		m_cached_medianEle.valid = false;

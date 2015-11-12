@@ -47,6 +47,17 @@ public:
 				}
 			}
 		}
+
+		double min = map->getMinEle();
+		if (min < 0){
+			for (int x = 0; x < map->getSize().x; x++)
+			{
+				for (int y = 0; y < map->getSize().y; y++)
+				{
+					map->setValue(sf::Vector2u(x,y), map->getValue(sf::Vector2i(x,y)) + min);
+				}
+			}
+		}
 	};
 
 	// Getter and Setter

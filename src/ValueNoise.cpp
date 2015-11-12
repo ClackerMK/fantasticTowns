@@ -1,8 +1,8 @@
-#include "PerlinNoise.h"
+#include "ValueNoise.h"
 
-// Definition 1 Dimensional Perlin Noise Generator
+// Definition 1 Dimensional Value Noise Generator
 // Stanardconstructor
-CPerlinNoiseGenerator_1D::CPerlinNoiseGenerator_1D() :
+CValueNoiseGenerator_1D::CValueNoiseGenerator_1D() :
 	m_persistence(0), 
 	m_seed(0)
 {
@@ -10,7 +10,7 @@ CPerlinNoiseGenerator_1D::CPerlinNoiseGenerator_1D() :
 }
 
 // Copyconstructor
-CPerlinNoiseGenerator_1D::CPerlinNoiseGenerator_1D(const CPerlinNoiseGenerator_1D& ref):
+CValueNoiseGenerator_1D::CValueNoiseGenerator_1D(const CValueNoiseGenerator_1D& ref):
 	m_persistence(ref.m_persistence),
 	m_seed(ref.m_seed)
 {
@@ -19,14 +19,14 @@ CPerlinNoiseGenerator_1D::CPerlinNoiseGenerator_1D(const CPerlinNoiseGenerator_1
 	});
 }
 
-// Fügt eine neue RNG-Generator Funktion hinzu
-void CPerlinNoiseGenerator_1D::addFunction (std::function<double(int)>* func)
+// FÃ¼gt eine neue RNG-Generator Funktion hinzu
+void CValueNoiseGenerator_1D::addFunction (std::function<double(int)>* func)
 {
 	m_random_funcs.push_back(func);
 }
 
 // Returns the specified Value
-double CPerlinNoiseGenerator_1D::operator()(int x) const
+double CValueNoiseGenerator_1D::operator()(int x) const
 {
 	int i = 0;
 	int val = 0;
@@ -42,9 +42,9 @@ double CPerlinNoiseGenerator_1D::operator()(int x) const
 	return val;
 }
 
-// Definintion 2 Dimensional Perlin Noise Generator
+// Definintion 2 Dimensional Value Noise Generator
 // Stanardconstructor
-CPerlinNoiseGenerator_2D::CPerlinNoiseGenerator_2D() :
+CValueNoiseGenerator_2D::CValueNoiseGenerator_2D() :
 	m_persistence(0),
 	m_seed(0)
 {
@@ -52,7 +52,7 @@ CPerlinNoiseGenerator_2D::CPerlinNoiseGenerator_2D() :
 }
 
 // Copyconstructor
-CPerlinNoiseGenerator_2D::CPerlinNoiseGenerator_2D(const CPerlinNoiseGenerator_2D& ref) :
+CValueNoiseGenerator_2D::CValueNoiseGenerator_2D(const CValueNoiseGenerator_2D& ref) :
 	m_persistence(ref.m_persistence),
 	m_seed(ref.m_seed)
 {
@@ -61,14 +61,14 @@ CPerlinNoiseGenerator_2D::CPerlinNoiseGenerator_2D(const CPerlinNoiseGenerator_2
 	});
 }
 
-// Fügt eine neue RNG-Generator Funktion hinzu
-void CPerlinNoiseGenerator_2D::addFunction(std::function<double(int, int)>* func)
+// FÃ¼gt eine neue RNG-Generator Funktion hinzu
+void CValueNoiseGenerator_2D::addFunction(std::function<double(int, int)>* func)
 {
 	m_random_funcs.push_back(func);
 }
 
 // Returns the specified Value
-double CPerlinNoiseGenerator_2D::operator()(int x, int y) const
+double CValueNoiseGenerator_2D::operator()(int x, int y) const
 {
 	int i = 0;
 	int val = 0;
@@ -84,9 +84,9 @@ double CPerlinNoiseGenerator_2D::operator()(int x, int y) const
 	return val;
 }
 
-// Definition 3D Perlin Noise Generator
+// Definition 3D Value Noise Generator
 // Stanardconstructor
-CPerlinNoiseGenerator_3D::CPerlinNoiseGenerator_3D() :
+CValueNoiseGenerator_3D::CValueNoiseGenerator_3D() :
 	m_persistence(0),
 	m_seed(0)
 {
@@ -94,7 +94,7 @@ CPerlinNoiseGenerator_3D::CPerlinNoiseGenerator_3D() :
 }
 
 // Copyconstructor
-CPerlinNoiseGenerator_3D::CPerlinNoiseGenerator_3D(const CPerlinNoiseGenerator_3D& ref) :
+CValueNoiseGenerator_3D::CValueNoiseGenerator_3D(const CValueNoiseGenerator_3D& ref) :
 	m_persistence(ref.m_persistence),
 	m_seed(ref.m_seed)
 {
@@ -103,14 +103,14 @@ CPerlinNoiseGenerator_3D::CPerlinNoiseGenerator_3D(const CPerlinNoiseGenerator_3
 	});
 }
 
-// Fügt eine neue RNG-Generator Funktion hinzu
-void CPerlinNoiseGenerator_3D::addFunction(std::function<double(int, int, int)>* func)
+// FÃ¼gt eine neue RNG-Generator Funktion hinzu
+void CValueNoiseGenerator_3D::addFunction(std::function<double(int, int, int)>* func)
 {
 	m_random_funcs.push_back(func);
 }
 
 // Returns the specified Value
-double CPerlinNoiseGenerator_3D::operator()(int x, int y, int z) const
+double CValueNoiseGenerator_3D::operator()(int x, int y, int z) const
 {
 	int i = 0;
 	int val = 0;

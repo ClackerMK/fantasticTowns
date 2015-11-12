@@ -39,7 +39,7 @@ void CStateManager::run()
 void CStateManager::Update(sf::Time t)
 {
 	std::list<CState*>::iterator _it = m_states.begin();
-	for (std::list<CState*>::iterator it = m_states.begin(); it != m_states.end(); it++)
+	for (std::list<CState*>::iterator it = m_states.begin(); it != m_states.end(); ++it)
 	{
 		if ((*it)->on_Update(t))
 		{
@@ -59,7 +59,7 @@ void CStateManager::Render()
 	m_Window->clear(sf::Color::White);
 
 
-	for (std::list<CState*>::reverse_iterator it = m_states.rbegin(); it != m_states.rend(); it++)
+	for (std::list<CState*>::reverse_iterator it = m_states.rbegin(); it != m_states.rend(); ++it)
 	{
 		(*it)->on_Render(m_Window);
 	}
@@ -89,7 +89,7 @@ void CStateManager::popState(CState* state)
 			m_states.erase(it);
 			break;
 		}
-		it++;
+		++it;
 	}
 }
 
