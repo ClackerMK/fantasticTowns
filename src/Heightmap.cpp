@@ -49,7 +49,8 @@ double CHeightMap::getMaxEle() const
 	}
 
 	m_cached_maxEle.valid = true;
-	return m_cached_maxEle.value = max;
+	m_cached_maxEle.value = max;
+	return max;
 } // getMaxEle()
 
 // getMinEle()
@@ -75,7 +76,8 @@ double CHeightMap::getMinEle() const
 	}
 
 	m_cached_minEle.valid = true;
-	return m_cached_minEle.value = min;
+	m_cached_minEle.value = min;
+	return min;
 } // getMinEle()
 
 // getMeanEle()
@@ -97,7 +99,8 @@ double CHeightMap::getMeanEle() const
 	}
 
 	m_cached_meanEle.valid = true;
-	return m_cached_meanEle.value = total / (m_size.x * m_size.y);
+	m_cached_meanEle.value = total / (m_size.x * m_size.y);
+	return m_cached_meanEle.value;
 } // getMeanEle()
 
 // getMedianEle()
@@ -105,7 +108,6 @@ double CHeightMap::getMeanEle() const
 double CHeightMap::getMedianEle() const
 {
 	std::vector<int> values;
-	double median = 0.;
 
 	// Was it already computed?
 	if (m_cached_medianEle.valid)
@@ -123,10 +125,14 @@ double CHeightMap::getMedianEle() const
 
 	m_cached_meanEle.valid = true;
 
-	if (values.size() % 2)
-		return m_cached_medianEle.value = values[(values.size() + 1) / 2];
-	else
-		return m_cached_medianEle.value = (values[values.size() / 2] + values[(values.size() / 2) + 1]) / 2;
+	if (values.size() % 2){
+		m_cached_medianEle.value = values[(values.size() + 1) / 2];
+		return m_cached_medianEle.value;
+	}
+	else{
+			m_cached_medianEle.value = (values[values.size() / 2] + values[(values.size() / 2) + 1]) / 2;
+			return m_cached_medianEle.value;
+		}
 } // getMedianEle()
 
 // m_stretch()
@@ -188,7 +194,7 @@ double smooth_point(double** map, sf::Vector2i size, int radius, sf::Vector2i po
 void CHeightMap::smoothStretchHeightMap(int radius)
 {
 	// first just simply stretch the map
-	m_stretch(sf::Vector2f(radius , radius ));
+	m_stretch(sf::Vector2f(radius * 2, radius * 2 ));
 
 	// then smooth every new point
 	smoothHeightMap(radius);
@@ -259,16 +265,22 @@ double CHeightMap::m_interpolate(sf::Vector2f pos) const
 
 void CHeightMap::draw(sf::RenderTarget& trgt, sf::RenderStates states) const
 {
-	sf::Color clr;
 	sf::RectangleShape rect(sf::Vector2f(m_drawingSize, m_drawingSize));
-
+	int colorvalue;
+	
 	for (int x = 0; x < m_size.x; x++)
 	{
 		for (int y = 0; y < m_size.y; y++)
 		{
-			clr.b = clr.g = clr.r = static_cast<sf::Uint8>((getValue(sf::Vector2f(x, y)) - getMinEle()) / static_cast<double>(getMaxEle() - getMinEle()) * 255);
+			if (getMaxEle() != 0)
+			{
+				colorvalue = ((getValue((sf::Vector2i(x,y))) - getMinEle()) / (getMaxEle() - getMinEle())) * 255;
+			} else 
+			{
+				colorvalue = 0;
+			}
 			rect.setPosition(sf::Vector2f(x * m_drawingSize, y * m_drawingSize));
-			rect.setFillColor(clr);
+			rect.setFillColor(sf::Color(0,colorvalue,0));
 			trgt.draw(rect, states);
 		}
 	}
