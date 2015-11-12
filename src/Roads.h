@@ -31,7 +31,7 @@ public:
 										CRoads(CHeightMap* map, int seed = -1);
 										CRoads(const CRoads& ref);
 										
-	void								generate(const CRivers& rivers, double sea_level, SAMPLE_MODE mode, sf::RenderTarget* trgt = NULL);
+	void								generate(double sea_level, SAMPLE_MODE mode, sf::RenderTarget* trgt = NULL);
 
 	void								draw(sf::RenderTarget& trgt, sf::RenderStates states) const;
 	
@@ -48,6 +48,7 @@ public:
 	void setNode_Dist_Range_max(double max) { m_Node_Dist_Range.second = max; }
 	void setNumNodes(int nodes)				{ m_numNodes = nodes; }
 	void setNumEdges(int edges)				{ m_numEdges = edges; }
+	void setSeed(int seed)					{ m_seed = seed; }
 
 	void setHeightMap(CHeightMap* map)		{ m_HeightMap = map; }
 };

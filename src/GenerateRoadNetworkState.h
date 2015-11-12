@@ -1,26 +1,29 @@
-#pragma once
+#ifndef GENERATEROADNETWORKSTATE_H
+#define GENERATEROADNETWORKSTATE_H
 
 #include <SFML/Graphics.hpp>
 
 
 #include "State.h"
 
-#include "Volcanic_HeightMap.h"
+#include "Heightmap.h"
 #include "Roads.h"
 #include "Rivers.h"
 
 class CGenerateRoadNetworkState :
 	public CState
 {
+
 	CHeightMap*					m_map;
 	
 	CRivers						m_rivers;
 	CRoads						m_roads;
 
-	sf::Texture					m_backgorundTexture;
 	sf::Sprite					m_backgroundSprite;
+
+	int 						m_seed;
 public:
-	CGenerateRoadNetworkState();
+	CGenerateRoadNetworkState(CHeightMap* map, int seed);
 	~CGenerateRoadNetworkState();
 
 	// Event Handler
@@ -30,7 +33,12 @@ public:
 	void on_Exit();
 
 	// Setter
-	void setBackground(const sf::Texture& bgTexture)	{ m_backgorundTexture = bgTexture; m_backgroundSprite.setTexture(m_backgorundTexture); }
-	void setHeightMap(CHeightMap* map)					{ m_map = map; }
+	void setBackground(const sf::Texture& bgTexture)
+		{ m_backgroundSprite.setTexture(sf::Texture(bgTexture)); }
+	void setHeightMap(CHeightMap* map)
+		{ m_roads.setHeightMap(map); m_map = map; }
+	void setSeed(int seed)
+		{ m_roads.setSeed(seed); m_seed = seed; }
 };
 
+#endif

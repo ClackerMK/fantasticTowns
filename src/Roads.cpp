@@ -27,16 +27,16 @@ CRoads::CRoads(const CRoads & ref):
 	m_HeightMap(ref.m_HeightMap),
 	m_numEdgesDeviation(ref.m_numEdgesDeviation),
 	m_numNodes(ref.m_numNodes),
-	m_numEdges(ref.m_numEdges)
+	m_numEdges(ref.m_numEdges),
+	m_Node_Dist_Range(ref.m_Node_Dist_Range)
 {
-	m_Node_Dist_Range = ref.m_Node_Dist_Range;
 } // Copyconstructor
 
 // Draw
 // Draw the RoadNetwork onto a Rendertarget
 void CRoads::draw(sf::RenderTarget& trgt, sf::RenderStates states) const
 {
-	for (std::vector<CRoadNode>::const_iterator it = m_PrimaryNodeList.begin(); it != m_PrimaryNodeList.end(); it++)
+	for (std::vector<CRoadNode>::const_iterator it = m_PrimaryNodeList.begin(); it != m_PrimaryNodeList.end(); ++it)
 	{
 		trgt.draw(*it);
 	}
@@ -82,7 +82,7 @@ void CRoads::generate(const CRivers& rivers, double sea_level, SAMPLE_MODE mode,
 
 			pos = util::getRandomVector2f(map_range.first, map_range.second, rand);
 			
-			for (std::vector<CRoadNode>::const_iterator it = m_PrimaryNodeList.begin(); it != m_PrimaryNodeList.end(); it++)
+			for (std::vector<CRoadNode>::const_iterator it = m_PrimaryNodeList.begin(); it != m_PrimaryNodeList.end(); ++it)
 			{
 				distance = util::getDistanceSqr<float>(pos, it->getPosition());
 				if (distance < std::pow(m_Node_Dist_Range.first,2) || distance > std::pow(m_Node_Dist_Range.second,2))
@@ -103,15 +103,14 @@ void CRoads::generate(const CRivers& rivers, double sea_level, SAMPLE_MODE mode,
 	{
 		int actualNum = numEdgesDev(rand);
 		int t = 0;
-		int selectedNode;
+		
 		while (t < actualNum || t >= m_PrimaryNodeList.size())
 		{
 			distance = 400000;
-			float delta;
-			selectedNode = -1;
+			int selectedNode = -1;
 			for (int iy = 0; iy != m_PrimaryNodeList.size(); iy++)
 			{
-				delta = util::getDistance(m_PrimaryNodeList[ix].getPosition(), m_PrimaryNodeList[iy].getPosition());
+				float delta = util::getDistance(m_PrimaryNodeList[ix].getPosition(), m_PrimaryNodeList[iy].getPosition());
 				if (!m_PrimaryNodeList[ix].isConnected(iy) && distance > delta)
 				{
 					distance = delta;

@@ -2,10 +2,11 @@
 
 #include <random>
 
-CGenerateRoadNetworkState::CGenerateRoadNetworkState()
-: m_roads(NULL, std::random_device()())
+CGenerateRoadNetworkState::CGenerateRoadNetworkState(CHeightMap* map, int seed)
+: m_roads(map, seed)
 {
-
+	m_map = map;
+	m_seed = seed;
 }
 
 
