@@ -1,9 +1,9 @@
 #include "StateManager.h"
 
 
-CStateManager::CStateManager(sf::RenderWindow *wndw)
+CStateManager::CStateManager()
 {
-	m_Window = wndw;
+
 }
 
 
@@ -19,17 +19,9 @@ void CStateManager::run()
 {
 	sf::Clock clk;
 	sf::Time  dt;
-	while (m_Window->isOpen() && m_states.size() != 0)
+    while (m_states.size() != 0)
 	{
 		dt = clk.restart();
-		sf::Event evt;
-		while (m_Window->pollEvent(evt))
-		{
-			if (evt.type == sf::Event::Closed)
-			{
-				m_Window->close();
-			}
-		}
 
 		Update(dt);
 		Render();
@@ -56,15 +48,10 @@ void CStateManager::Update(sf::Time t)
 
 void CStateManager::Render()
 {
-	m_Window->clear(sf::Color::White);
-
-
 	for (std::list<CState*>::reverse_iterator it = m_states.rbegin(); it != m_states.rend(); ++it)
 	{
-		(*it)->on_Render(m_Window);
+        (*it)->on_Render();
 	}
-
-	m_Window->display();
 }
 
 void CStateManager::pushState(CState* state)

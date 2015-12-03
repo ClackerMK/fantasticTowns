@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "PerlinNoise.h"
+#include "ValueNoise.h"
 
 
 class SquiglyLine :
@@ -16,7 +16,7 @@ private:
 	sf::Color								m_Color;
 	unsigned int							m_InterpolationSamples;
 	unsigned int							m_NoiseSamples;
-	CPerlinNoiseGenerator_1D				m_Generator;
+	CValueNoiseGenerator_1D				m_Generator;
 	std::vector<std::function<double(int)>> m_noise_funcs;
 
 	double									interpolate(double a, double b, float x) const {

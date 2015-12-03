@@ -11,12 +11,10 @@ class CStateManager
 private:
 	std::list<CState*>		m_states;
 
-	sf::RenderWindow*		m_Window;
-
 	void					Update(sf::Time t);
 	void					Render();
 public:
-							CStateManager(sf::RenderWindow* wndw);
+                            CStateManager();
 							~CStateManager();
 
 	void					run();

@@ -14,7 +14,7 @@ public:
 
 	// Call Whenever the State should be Rendered
 	// @param target The RenderTarget on which the State should be rendered on
-	virtual void on_Render(sf::RenderTarget *target) = 0;
+    virtual void on_Render() = 0;
 	// Call Whenever the State is updated
 	// @para dt The Elapsed Time between Calls
 	// @return false if the State was ended, true otherwise

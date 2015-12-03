@@ -8,7 +8,7 @@
 #include "State.h"
 #include "StateManager.h"
 
-#include "GenerateRoadNetworkState.h"
+//#include "GenerateRoadNetworkState.h"
 
 #include "Heightmap.h"
 #include "HeightMapGenerator.h"
@@ -25,6 +25,8 @@ private:
 	CHeightMap*								m_pMap;
 	CHeightMapGenerator*					m_pMapGenerator;
 	std::vector<std::vector<sf::Vector2f>>	m_contours;
+
+    sf::RenderWindow*                       m_wndw;
 	sf::RectangleShape						m_shp;
 	sf::RenderTexture						m_lines_renderTexture;
 	sf::RenderTexture						m_map_renderTexture;
@@ -38,9 +40,12 @@ public:
 	CGenerateHeightMapState();
 	~CGenerateHeightMapState();
 
+    void setHeightMap (CHeightMap* map) {m_pMap = map;}
+    void setRenderWindow (sf::RenderWindow* wndw) {m_wndw = wndw;}
+
 	void on_Enter();
 	bool on_Update(sf::Time dt);
-	void on_Render(sf::RenderTarget *target);
+    void on_Render();
 	void on_Exit();
 };
 

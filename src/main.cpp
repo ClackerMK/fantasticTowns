@@ -1,23 +1,17 @@
-#include <SFML/Graphics.hpp>
 
-#include "StateManager.h"
-#include "GenerateHeightMapState.h"
+#include "gui/mainwindow.h"
+#include <QApplication>
 
-int main()
+int main(int argc, char *argv[])
 {
-	sf::RenderWindow wndw(sf::VideoMode(800, 800, 32), "HeightMap");
+
+
 	
-	CStateManager manager(&wndw);
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-	CGenerateHeightMapState HM_State;
-	
-	// Register Manager
-	HM_State.setManager(&manager);
+    return a.exec();
 
-	// Push State
-	manager.pushState(&HM_State);
 
-	manager.run();
-
-	return 0;
 }

@@ -147,30 +147,34 @@ void CGenerateHeightMapState::on_Enter() {
 	std::cout << "Finished Drawing Contours" << std::endl;
 }
 
-void CGenerateHeightMapState::on_Render(sf::RenderTarget *target) {
-	target->draw(m_shp);
+void CGenerateHeightMapState::on_Render() {
+    m_wndw->clear();
+
+    m_wndw->draw(m_shp);
 	if (underlay)
-		target->draw(m_map_Sprite, sf::BlendMultiply);
-	target->draw(m_lines_Sprite);
+        m_wndw->draw(m_map_Sprite, sf::BlendMultiply);
+    m_wndw->draw(m_lines_Sprite);
+
+    m_wndw->display();
 }
 
 bool CGenerateHeightMapState::on_Update(sf::Time t) {
 	sf::Keyboard keyb;
 
-	if (keyb.isKeyPressed(sf::Keyboard::Escape) && !was_pressed)
-	{
-		CGenerateRoadNetworkState* new_state = new CGenerateRoadNetworkState(m_pMap, m_seed);
-		new_state->setHeightMap(m_pMap);
+//	if (keyb.isKeyPressed(sf::Keyboard::Escape) && !was_pressed)
+//	{
+//		CGenerateRoadNetworkState* new_state = new CGenerateRoadNetworkState(m_pMap, m_seed);
+//		new_state->setHeightMap(m_pMap);
 		
-		sf::RenderTexture* tex = new sf::RenderTexture();
-		tex->create(800, 800);
-		tex->clear();
-		tex->draw(m_map_Sprite);
-		tex->draw(m_lines_Sprite);
-		new_state->setBackground(tex->getTexture());
+//		sf::RenderTexture* tex = new sf::RenderTexture();
+//		tex->create(800, 800);
+//		tex->clear();
+//		tex->draw(m_map_Sprite);
+//		tex->draw(m_lines_Sprite);
+//		new_state->setBackground(tex->getTexture());
 
-		m_pManager->switchState(new_state);
-	}
+//		m_pManager->switchState(new_state);
+//	}
 	was_pressed = keyb.isKeyPressed(sf::Keyboard::Escape);
 	return true;
 }

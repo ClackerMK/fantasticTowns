@@ -2,6 +2,14 @@
 
 #include "Heightmap.h"
 
+enum HMMP_ID
+{
+    EROSION,
+    LIBNOISE,
+    SMOOTHSTRETCH,
+    VOLCANIC
+};
+
 // CHeightmapModificationProcess
 // Abstract class for modifying (eg. adding or removing of "Particles")
 class CHeightmapModificationProcess

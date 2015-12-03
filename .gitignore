@@ -22,6 +22,10 @@ fantasticTowns
 *.tar
 *.zip
 
+# Backup Files       #
+######################
+*.bak
+
 # Logs and databases #
 ######################
 *.log
@@ -49,6 +53,4 @@ Thumbs.db
 # qt-creator Files    #
 #######################
 *.config
-*.includes
-*.files
 *.creator
