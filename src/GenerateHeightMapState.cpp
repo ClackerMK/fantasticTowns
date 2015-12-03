@@ -9,37 +9,13 @@ double getLength(sf::Vector2f vec)
 	return std::sqrt(vec.x * vec.x + vec.y * vec.y);
 }
 
-CGenerateHeightMapState::CGenerateHeightMapState(): m_seed(std::random_device()())
+CGenerateHeightMapState::CGenerateHeightMapState(): m_seed(std::random_device()()), m_size(800,800)
 {
 	// Initialize Map Generator
 	m_pMapGenerator = new CHeightMapGenerator;
 
 	m_pMap = NULL;
 
-	HMMP_LibNoise* process = new HMMP_LibNoise;
-	process->setAmplitude(30.0);
-
-	HMMP_Erosion* process2 = new HMMP_Erosion;
-	process2->setCapacity(3);
-	process2->setIterations(50);
-	process2->setSolubility(4);
-	process2->setRainAmount(5);
-	process2->setEvaporation(0.7);
-
-	HMMP_Volcanic* process3 = new HMMP_Volcanic;
-	process3->setStones(64000);
-	process3->setMaxStoneSize(20);
-	process3->setMinStoneSize(10);
-	process3->setStability(3);
-
-	//HMMP_SmoothStretch* process3 = new HMMP_SmoothStretch;
-	//process3->setFactor(5);
-
-
-	m_pMapGenerator->pushProcess(process);
-	//m_pMapGenerator->pushProcess(process3);
-	m_pMapGenerator->pushProcess(process2);
-	
 	//m_pMapGenerator->pushProcess(process3);
 	// Initialize Shape
 	m_shp.setFillColor(sf::Color::White);
@@ -65,7 +41,7 @@ void CGenerateHeightMapState::on_Enter() {
 	SquiglyLine line;
 
 	std::cout << "Start Generation" << std::endl;
-	m_pMap = m_pMapGenerator->generate(m_seed, sf::Vector2i(800,800));
+    m_pMap = m_pMapGenerator->generate(m_seed, m_size);
 
 	std::cout << "Finished Generation" << std::endl;
 

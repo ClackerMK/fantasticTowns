@@ -34,6 +34,8 @@ private:
 	sf::Sprite								m_map_Sprite;
 	int 									m_seed;
 
+    sf::Vector2i                            m_size;
+
 	bool									underlay = true;
 	bool									was_pressed = false;
 public:
@@ -42,10 +44,16 @@ public:
 
     void setHeightMap (CHeightMap* map) {m_pMap = map;}
     void setRenderWindow (sf::RenderWindow* wndw) {m_wndw = wndw;}
+    void setSize (int x, int y) {m_size.x = x; m_size.y = y;}
+    void setSeed (int seed) {m_seed = seed;}
+
+    CHeightMapGenerator* getMapGenerator() {return m_pMapGenerator;}
 
 	void on_Enter();
 	bool on_Update(sf::Time dt);
     void on_Render();
 	void on_Exit();
+
+
 };
 

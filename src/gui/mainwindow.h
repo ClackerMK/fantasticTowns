@@ -4,11 +4,15 @@
 #include <QMainWindow>
 
 #include <SFML/Graphics.hpp>
-#include <map>
+#include <vector>
+#include <random>
 
 #include "../StateManager.h"
 #include "../GenerateHeightMapState.h"
+
 #include "../HeightMapModificationProcess.h"
+#include "../HMMP_Erosion.h"
+#include "../HMMP_LibNoise.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,13 +27,11 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_released();
-
-    void on_pushButton_2_released();
-
     void on_startButton_released();
 
-    void on_listWidget_activated(const QModelIndex &index);
+    void on_addHMP_pressed();
+
+    void on_deleteHMMP_pressed();
 
 private:
     Ui::MainWindow *ui;
@@ -37,7 +39,7 @@ private:
     CStateManager manager;
     CGenerateHeightMapState HM_State;
 
-    std::map<int, std::pair<HMMP_ID, CHeightmapModificationProcess*>> m_processes;
+    std::vector<CHeightmapModificationProcess*> m_processes;
 };
 
 #endif // MAINWINDOW_H

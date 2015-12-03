@@ -30,7 +30,7 @@ public:
 		sf::Clock clk;
 
 
-		m_Perlin.SetSeed(seed);
+        m_Perlin.SetSeed(seed);
 
 		for (int x = 0; x < map->getSize().x; x++)
 		{

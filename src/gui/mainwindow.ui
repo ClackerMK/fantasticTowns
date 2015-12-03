@@ -41,7 +41,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="addHMP">
          <property name="minimumSize">
           <size>
            <width>40</width>
@@ -54,7 +54,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="deleteHMMP">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -71,7 +71,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QListWidget" name="listWidget">
+     <widget class="QListWidget" name="listHMMP">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -186,7 +186,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Erosion_Page">
        <property name="geometry">
@@ -203,9 +203,9 @@
        <widget class="QWidget" name="formLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>8</x>
+          <x>0</x>
           <y>0</y>
-          <width>202</width>
+          <width>211</width>
           <height>321</height>
          </rect>
         </property>
@@ -340,7 +340,7 @@
           <x>0</x>
           <y>0</y>
           <width>211</width>
-          <height>331</height>
+          <height>171</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_2">
@@ -354,7 +354,7 @@
          <item row="0" column="1">
           <widget class="QLineEdit" name="PN_steps">
            <property name="text">
-            <string>1.0</string>
+            <string>0.05</string>
            </property>
           </widget>
          </item>
@@ -420,7 +420,7 @@
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="PN_Persistence">
+          <widget class="QLineEdit" name="PN_persistence">
            <property name="text">
             <string>0.5</string>
            </property>
