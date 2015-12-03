@@ -57,14 +57,14 @@ public:
 					map->setValue(sf::Vector2u(x,y), map->getValue(sf::Vector2i(x,y)) + min);
 				}
 			}
-		}
-	};
+        }
+    }
 
 	// Getter and Setter
 	void setAmplitude (double amp)						{m_amplitude = amp;}	 
 	void setStep(double step)							{m_step = step;}
 	void setLacunarity (double lacunarity)				{m_Perlin.SetLacunarity(lacunarity);}
-	void setOctaveCount (double octaveCount)			{m_Perlin.SetOctaveCount(octaveCount);}
+    void setOctaveCount (int octaveCount)			{m_Perlin.SetOctaveCount(octaveCount);}
 	void setNoiseQuality (noise::NoiseQuality quality)	{m_Perlin.SetNoiseQuality(quality);}
 	void setPersistence (double persistence)			{m_Perlin.SetPersistence(persistence);}
 

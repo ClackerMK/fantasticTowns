@@ -8,6 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->seedEdit->setValidator( new QIntValidator(0, INT32_MAX, this) );
+    ui->Erosion_Evaporation->setValidator(new QIntValidator(0, 10, this));
+    ui->Erosion_Iterations->setValidator(new QIntValidator(0, INT32_MAX, this));
+    ui->Erosion_RainAmount->setValidator(new QIntValidator(0, INT32_MAX, this));
+    ui->Erosion_Solubility->setValidator(new QIntValidator(0, INT32_MAX, this));
+    ui->Erosion_Capacity->setValidator(new QIntValidator(0, INT32_MAX, this));
 }
 
 MainWindow::~MainWindow()

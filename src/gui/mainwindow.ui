@@ -200,49 +200,17 @@
        <attribute name="label">
         <string>Erosion</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_3">
+       <widget class="QWidget" name="formLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>9</x>
-          <y>9</y>
-          <width>201</width>
-          <height>311</height>
+          <x>8</x>
+          <y>0</y>
+          <width>202</width>
+          <height>321</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Iterations</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="Erosion_Iterations"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Rain Amount (per Iteration)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="Erosion_RainAmount"/>
-         </item>
-         <item>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
           <widget class="QLabel" name="label_5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -255,10 +223,34 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="Erosion_Solubility"/>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="Erosion_Solubility">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
          </item>
-         <item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Iterations</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="Erosion_Iterations">
+           <property name="text">
+            <string>50</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
           <widget class="QLabel" name="Evaporation_Erosion">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -269,12 +261,26 @@
            <property name="text">
             <string>Evaporation (in Percent)</string>
            </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="Erosion_Evaporation"/>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="Erosion_Evaporation">
+           <property name="text">
+            <string>40</string>
+           </property>
+          </widget>
          </item>
-         <item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="Erosion_Capacity">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
           <widget class="QLabel" name="Evaporation_Capacity">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -285,10 +291,33 @@
            <property name="text">
             <string>Capacity (of Rain)</string>
            </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>10000</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Rain Amount (per Iteration)</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="Erosion_RainAmount">
+           <property name="text">
+            <string>10</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -305,6 +334,114 @@
        <attribute name="label">
         <string>PerlinNoise</string>
        </attribute>
+       <widget class="QWidget" name="formLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>211</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="stepsLabel">
+           <property name="text">
+            <string>Step</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="PN_steps">
+           <property name="text">
+            <string>1.0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="amplitudeLabel">
+           <property name="text">
+            <string>Amplitude</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="PN_amplitude">
+           <property name="text">
+            <string>30.0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lacunarityLabel">
+           <property name="text">
+            <string>Lacunarity</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="PN_lacunarity">
+           <property name="text">
+            <string>2.0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="qualityLabel">
+           <property name="text">
+            <string>Quality</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="PN_quality">
+           <item>
+            <property name="text">
+             <string>Standard</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Fast</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Best</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="persistenceLabel">
+           <property name="text">
+            <string>Persistence</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="PN_Persistence">
+           <property name="text">
+            <string>0.5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="octaveCountLabel">
+           <property name="text">
+            <string>Octave Count</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="PN_octaveCount">
+           <property name="text">
+            <string>6</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
