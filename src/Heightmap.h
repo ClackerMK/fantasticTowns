@@ -37,6 +37,9 @@ public:
 	CHeightMap(int x, int y);
 	~CHeightMap();
 
+    // Copyconstructor
+    CHeightMap(CHeightMap &ref);
+
 	// Smoothing
 	void			smoothStretchHeightMap(int radius);
 	void			smoothHeightMap(int radius);

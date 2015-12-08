@@ -26,6 +26,31 @@ CHeightMap::~CHeightMap()
 	delete[] m_map;
 } // Destructor
 
+// Copyconstructor
+CHeightMap::CHeightMap(CHeightMap &ref) :
+    m_drawingSize(ref.m_drawingSize),
+    m_size(ref.m_size),
+    m_cached_maxEle(ref.m_cached_maxEle),
+    m_cached_meanEle(ref.m_cached_meanEle),
+    m_cached_medianEle(ref.m_cached_medianEle),
+    m_cached_minEle(ref.m_cached_minEle)
+{
+    for (int x = 0; x < m_size.x; x++)
+    {
+        delete[] m_map[x];
+    }
+    delete[] m_map;
+
+    for (int ix = 0; ix < ref.getSize().x; ix++)
+    {
+        m_map[ix] = new double[y];
+        for (int iy = 0; iy < ref.getSize().y; iy++)
+        {
+            m_map[ix][iy] = ref.getValue(sf::Vector2i(x,y));
+        }
+    }
+}
+
 // getMaxEle()
 // Returns the maximum Elevation of the entire Map and caches the Value
 double CHeightMap::getMaxEle() const
