@@ -72,21 +72,7 @@ void MainWindow::on_addHMP_pressed()
     CHeightmapModificationProcess* hmmp;
 
     switch (ui->ModProcessBox->currentIndex()){
-        case 0:{
-            hmmp = new HMMP_Erosion();
-            HMMP_Erosion* erosion = dynamic_cast<HMMP_Erosion*>(hmmp);
-
-            erosion->setCapacity(ui->Erosion_Capacity->text().toInt());
-            erosion->setEvaporation(static_cast<double>(ui->Erosion_Evaporation->text().toInt()) / 100.0);
-            erosion->setIterations(ui->Erosion_Iterations->text().toInt());
-            erosion->setRainAmount(ui->Erosion_RainAmount->text().toInt());
-            erosion->setSolubility(ui->Erosion_Solubility->text().toInt());
-
-            ui->listHMMP->addItem("Erosion");
-
-            break;
-        }
-         case 1:{
+         case 0:{
             hmmp = new HMMP_LibNoise();
             HMMP_LibNoise* perlin = dynamic_cast<HMMP_LibNoise*>(hmmp);
 
@@ -113,6 +99,20 @@ void MainWindow::on_addHMP_pressed()
             perlin->setStep(ui->PN_steps->text().toDouble());
 
             ui->listHMMP->addItem("Perlin Noise");
+
+            break;
+        }
+        case 1:{
+            hmmp = new HMMP_Erosion();
+            HMMP_Erosion* erosion = dynamic_cast<HMMP_Erosion*>(hmmp);
+
+            erosion->setCapacity(ui->Erosion_Capacity->text().toInt());
+            erosion->setEvaporation(static_cast<double>(ui->Erosion_Evaporation->text().toInt()) / 100.0);
+            erosion->setIterations(ui->Erosion_Iterations->text().toInt());
+            erosion->setRainAmount(ui->Erosion_RainAmount->text().toInt());
+            erosion->setSolubility(ui->Erosion_Solubility->text().toInt());
+
+            ui->listHMMP->addItem("Erosion");
 
             break;
         }

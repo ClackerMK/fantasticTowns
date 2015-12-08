@@ -52,19 +52,6 @@ public:
     QLabel *label_2;
     QSpinBox *size_y;
     QToolBox *ModProcessBox;
-    QWidget *Erosion_Page;
-    QWidget *formLayoutWidget;
-    QFormLayout *formLayout;
-    QLabel *label_5;
-    QLineEdit *Erosion_Solubility;
-    QLabel *label_3;
-    QLineEdit *Erosion_Iterations;
-    QLabel *Evaporation_Erosion;
-    QLineEdit *Erosion_Evaporation;
-    QLineEdit *Erosion_Capacity;
-    QLabel *Evaporation_Capacity;
-    QLabel *label_4;
-    QLineEdit *Erosion_RainAmount;
     QWidget *PN_Page;
     QWidget *formLayoutWidget_2;
     QFormLayout *formLayout_2;
@@ -80,6 +67,19 @@ public:
     QLineEdit *PN_persistence;
     QLabel *octaveCountLabel;
     QLineEdit *PN_octaveCount;
+    QWidget *Erosion_Page;
+    QWidget *formLayoutWidget;
+    QFormLayout *formLayout;
+    QLabel *label_5;
+    QLineEdit *Erosion_Solubility;
+    QLabel *label_3;
+    QLineEdit *Erosion_Iterations;
+    QLabel *Evaporation_Erosion;
+    QLineEdit *Erosion_Evaporation;
+    QLineEdit *Erosion_Capacity;
+    QLabel *Evaporation_Capacity;
+    QLabel *label_4;
+    QLineEdit *Erosion_RainAmount;
     QWidget *page;
     QWidget *formLayoutWidget_3;
     QFormLayout *formLayout_3;
@@ -186,6 +186,78 @@ public:
         ModProcessBox = new QToolBox(tab);
         ModProcessBox->setObjectName(QStringLiteral("ModProcessBox"));
         ModProcessBox->setGeometry(QRect(310, 100, 221, 381));
+        PN_Page = new QWidget();
+        PN_Page->setObjectName(QStringLiteral("PN_Page"));
+        PN_Page->setGeometry(QRect(0, 0, 221, 269));
+        formLayoutWidget_2 = new QWidget(PN_Page);
+        formLayoutWidget_2->setObjectName(QStringLiteral("formLayoutWidget_2"));
+        formLayoutWidget_2->setGeometry(QRect(0, 0, 211, 171));
+        formLayout_2 = new QFormLayout(formLayoutWidget_2);
+        formLayout_2->setSpacing(6);
+        formLayout_2->setContentsMargins(11, 11, 11, 11);
+        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
+        formLayout_2->setContentsMargins(0, 0, 0, 0);
+        stepsLabel = new QLabel(formLayoutWidget_2);
+        stepsLabel->setObjectName(QStringLiteral("stepsLabel"));
+
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, stepsLabel);
+
+        PN_steps = new QLineEdit(formLayoutWidget_2);
+        PN_steps->setObjectName(QStringLiteral("PN_steps"));
+
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, PN_steps);
+
+        amplitudeLabel = new QLabel(formLayoutWidget_2);
+        amplitudeLabel->setObjectName(QStringLiteral("amplitudeLabel"));
+
+        formLayout_2->setWidget(1, QFormLayout::LabelRole, amplitudeLabel);
+
+        PN_amplitude = new QLineEdit(formLayoutWidget_2);
+        PN_amplitude->setObjectName(QStringLiteral("PN_amplitude"));
+
+        formLayout_2->setWidget(1, QFormLayout::FieldRole, PN_amplitude);
+
+        lacunarityLabel = new QLabel(formLayoutWidget_2);
+        lacunarityLabel->setObjectName(QStringLiteral("lacunarityLabel"));
+
+        formLayout_2->setWidget(2, QFormLayout::LabelRole, lacunarityLabel);
+
+        PN_lacunarity = new QLineEdit(formLayoutWidget_2);
+        PN_lacunarity->setObjectName(QStringLiteral("PN_lacunarity"));
+
+        formLayout_2->setWidget(2, QFormLayout::FieldRole, PN_lacunarity);
+
+        qualityLabel = new QLabel(formLayoutWidget_2);
+        qualityLabel->setObjectName(QStringLiteral("qualityLabel"));
+
+        formLayout_2->setWidget(3, QFormLayout::LabelRole, qualityLabel);
+
+        PN_quality = new QComboBox(formLayoutWidget_2);
+        PN_quality->setObjectName(QStringLiteral("PN_quality"));
+
+        formLayout_2->setWidget(3, QFormLayout::FieldRole, PN_quality);
+
+        persistenceLabel = new QLabel(formLayoutWidget_2);
+        persistenceLabel->setObjectName(QStringLiteral("persistenceLabel"));
+
+        formLayout_2->setWidget(4, QFormLayout::LabelRole, persistenceLabel);
+
+        PN_persistence = new QLineEdit(formLayoutWidget_2);
+        PN_persistence->setObjectName(QStringLiteral("PN_persistence"));
+
+        formLayout_2->setWidget(4, QFormLayout::FieldRole, PN_persistence);
+
+        octaveCountLabel = new QLabel(formLayoutWidget_2);
+        octaveCountLabel->setObjectName(QStringLiteral("octaveCountLabel"));
+
+        formLayout_2->setWidget(5, QFormLayout::LabelRole, octaveCountLabel);
+
+        PN_octaveCount = new QLineEdit(formLayoutWidget_2);
+        PN_octaveCount->setObjectName(QStringLiteral("PN_octaveCount"));
+
+        formLayout_2->setWidget(5, QFormLayout::FieldRole, PN_octaveCount);
+
+        ModProcessBox->addItem(PN_Page, QStringLiteral("PerlinNoise"));
         Erosion_Page = new QWidget();
         Erosion_Page->setObjectName(QStringLiteral("Erosion_Page"));
         Erosion_Page->setGeometry(QRect(0, 0, 221, 269));
@@ -263,80 +335,9 @@ public:
         formLayout->setWidget(4, QFormLayout::FieldRole, Erosion_RainAmount);
 
         ModProcessBox->addItem(Erosion_Page, QStringLiteral("Erosion"));
-        PN_Page = new QWidget();
-        PN_Page->setObjectName(QStringLiteral("PN_Page"));
-        PN_Page->setGeometry(QRect(0, 0, 221, 269));
-        formLayoutWidget_2 = new QWidget(PN_Page);
-        formLayoutWidget_2->setObjectName(QStringLiteral("formLayoutWidget_2"));
-        formLayoutWidget_2->setGeometry(QRect(0, 0, 211, 171));
-        formLayout_2 = new QFormLayout(formLayoutWidget_2);
-        formLayout_2->setSpacing(6);
-        formLayout_2->setContentsMargins(11, 11, 11, 11);
-        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
-        formLayout_2->setContentsMargins(0, 0, 0, 0);
-        stepsLabel = new QLabel(formLayoutWidget_2);
-        stepsLabel->setObjectName(QStringLiteral("stepsLabel"));
-
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, stepsLabel);
-
-        PN_steps = new QLineEdit(formLayoutWidget_2);
-        PN_steps->setObjectName(QStringLiteral("PN_steps"));
-
-        formLayout_2->setWidget(0, QFormLayout::FieldRole, PN_steps);
-
-        amplitudeLabel = new QLabel(formLayoutWidget_2);
-        amplitudeLabel->setObjectName(QStringLiteral("amplitudeLabel"));
-
-        formLayout_2->setWidget(1, QFormLayout::LabelRole, amplitudeLabel);
-
-        PN_amplitude = new QLineEdit(formLayoutWidget_2);
-        PN_amplitude->setObjectName(QStringLiteral("PN_amplitude"));
-
-        formLayout_2->setWidget(1, QFormLayout::FieldRole, PN_amplitude);
-
-        lacunarityLabel = new QLabel(formLayoutWidget_2);
-        lacunarityLabel->setObjectName(QStringLiteral("lacunarityLabel"));
-
-        formLayout_2->setWidget(2, QFormLayout::LabelRole, lacunarityLabel);
-
-        PN_lacunarity = new QLineEdit(formLayoutWidget_2);
-        PN_lacunarity->setObjectName(QStringLiteral("PN_lacunarity"));
-
-        formLayout_2->setWidget(2, QFormLayout::FieldRole, PN_lacunarity);
-
-        qualityLabel = new QLabel(formLayoutWidget_2);
-        qualityLabel->setObjectName(QStringLiteral("qualityLabel"));
-
-        formLayout_2->setWidget(3, QFormLayout::LabelRole, qualityLabel);
-
-        PN_quality = new QComboBox(formLayoutWidget_2);
-        PN_quality->setObjectName(QStringLiteral("PN_quality"));
-
-        formLayout_2->setWidget(3, QFormLayout::FieldRole, PN_quality);
-
-        persistenceLabel = new QLabel(formLayoutWidget_2);
-        persistenceLabel->setObjectName(QStringLiteral("persistenceLabel"));
-
-        formLayout_2->setWidget(4, QFormLayout::LabelRole, persistenceLabel);
-
-        PN_persistence = new QLineEdit(formLayoutWidget_2);
-        PN_persistence->setObjectName(QStringLiteral("PN_persistence"));
-
-        formLayout_2->setWidget(4, QFormLayout::FieldRole, PN_persistence);
-
-        octaveCountLabel = new QLabel(formLayoutWidget_2);
-        octaveCountLabel->setObjectName(QStringLiteral("octaveCountLabel"));
-
-        formLayout_2->setWidget(5, QFormLayout::LabelRole, octaveCountLabel);
-
-        PN_octaveCount = new QLineEdit(formLayoutWidget_2);
-        PN_octaveCount->setObjectName(QStringLiteral("PN_octaveCount"));
-
-        formLayout_2->setWidget(5, QFormLayout::FieldRole, PN_octaveCount);
-
-        ModProcessBox->addItem(PN_Page, QStringLiteral("PerlinNoise"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
+        page->setGeometry(QRect(0, 0, 221, 269));
         formLayoutWidget_3 = new QWidget(page);
         formLayoutWidget_3->setObjectName(QStringLiteral("formLayoutWidget_3"));
         formLayoutWidget_3->setGeometry(QRect(0, 0, 211, 111));
@@ -391,6 +392,7 @@ public:
         ModProcessBox->addItem(page, QStringLiteral("Volcanic"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
+        page_2->setGeometry(QRect(0, 0, 221, 269));
         formLayoutWidget_4 = new QWidget(page_2);
         formLayoutWidget_4->setObjectName(QStringLiteral("formLayoutWidget_4"));
         formLayoutWidget_4->setGeometry(QRect(0, 0, 211, 31));
@@ -446,7 +448,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        ModProcessBox->setCurrentIndex(3);
+        ModProcessBox->setCurrentIndex(0);
         startButton->setDefault(false);
 
 
@@ -461,17 +463,6 @@ public:
         groupBox->setTitle(QApplication::translate("MainWindow", "Start Size", 0));
         label->setText(QApplication::translate("MainWindow", "X", 0));
         label_2->setText(QApplication::translate("MainWindow", "Y", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Solubility ", 0));
-        Erosion_Solubility->setText(QApplication::translate("MainWindow", "5", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Iterations", 0));
-        Erosion_Iterations->setText(QApplication::translate("MainWindow", "50", 0));
-        Evaporation_Erosion->setText(QApplication::translate("MainWindow", "Evaporation (in Percent)", 0));
-        Erosion_Evaporation->setText(QApplication::translate("MainWindow", "40", 0));
-        Erosion_Capacity->setText(QApplication::translate("MainWindow", "5", 0));
-        Evaporation_Capacity->setText(QApplication::translate("MainWindow", "Capacity (of Rain)", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Rain Amount (per Iteration)", 0));
-        Erosion_RainAmount->setText(QApplication::translate("MainWindow", "10", 0));
-        ModProcessBox->setItemText(ModProcessBox->indexOf(Erosion_Page), QApplication::translate("MainWindow", "Erosion", 0));
         stepsLabel->setText(QApplication::translate("MainWindow", "Step", 0));
         PN_steps->setText(QApplication::translate("MainWindow", "0.05", 0));
         amplitudeLabel->setText(QApplication::translate("MainWindow", "Amplitude", 0));
@@ -490,6 +481,17 @@ public:
         octaveCountLabel->setText(QApplication::translate("MainWindow", "Octave Count", 0));
         PN_octaveCount->setText(QApplication::translate("MainWindow", "6", 0));
         ModProcessBox->setItemText(ModProcessBox->indexOf(PN_Page), QApplication::translate("MainWindow", "PerlinNoise", 0));
+        label_5->setText(QApplication::translate("MainWindow", "Solubility ", 0));
+        Erosion_Solubility->setText(QApplication::translate("MainWindow", "5", 0));
+        label_3->setText(QApplication::translate("MainWindow", "Iterations", 0));
+        Erosion_Iterations->setText(QApplication::translate("MainWindow", "50", 0));
+        Evaporation_Erosion->setText(QApplication::translate("MainWindow", "Evaporation (in Percent)", 0));
+        Erosion_Evaporation->setText(QApplication::translate("MainWindow", "40", 0));
+        Erosion_Capacity->setText(QApplication::translate("MainWindow", "5", 0));
+        Evaporation_Capacity->setText(QApplication::translate("MainWindow", "Capacity (of Rain)", 0));
+        label_4->setText(QApplication::translate("MainWindow", "Rain Amount (per Iteration)", 0));
+        Erosion_RainAmount->setText(QApplication::translate("MainWindow", "10", 0));
+        ModProcessBox->setItemText(ModProcessBox->indexOf(Erosion_Page), QApplication::translate("MainWindow", "Erosion", 0));
         stonesLabel->setText(QApplication::translate("MainWindow", "Stones", 0));
         Volcanic_Stones->setText(QApplication::translate("MainWindow", "1000", 0));
         stoneSizeMinLabel->setText(QApplication::translate("MainWindow", "Stone Size Min", 0));

@@ -186,8 +186,129 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
+      <widget class="QWidget" name="PN_Page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>221</width>
+         <height>269</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>PerlinNoise</string>
+       </attribute>
+       <widget class="QWidget" name="formLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>211</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="stepsLabel">
+           <property name="text">
+            <string>Step</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="PN_steps">
+           <property name="text">
+            <string>0.05</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="amplitudeLabel">
+           <property name="text">
+            <string>Amplitude</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="PN_amplitude">
+           <property name="text">
+            <string>30.0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lacunarityLabel">
+           <property name="text">
+            <string>Lacunarity</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="PN_lacunarity">
+           <property name="text">
+            <string>2.0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="qualityLabel">
+           <property name="text">
+            <string>Quality</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="PN_quality">
+           <item>
+            <property name="text">
+             <string>Standard</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Fast</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Best</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="persistenceLabel">
+           <property name="text">
+            <string>Persistence</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="PN_persistence">
+           <property name="text">
+            <string>0.5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="octaveCountLabel">
+           <property name="text">
+            <string>Octave Count</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="PN_octaveCount">
+           <property name="text">
+            <string>6</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
       <widget class="QWidget" name="Erosion_Page">
        <property name="geometry">
         <rect>
@@ -322,7 +443,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="PN_Page">
+      <widget class="QWidget" name="page">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -331,119 +452,6 @@
          <height>269</height>
         </rect>
        </property>
-       <attribute name="label">
-        <string>PerlinNoise</string>
-       </attribute>
-       <widget class="QWidget" name="formLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>211</width>
-          <height>171</height>
-         </rect>
-        </property>
-        <layout class="QFormLayout" name="formLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="stepsLabel">
-           <property name="text">
-            <string>Step</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="PN_steps">
-           <property name="text">
-            <string>0.05</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="amplitudeLabel">
-           <property name="text">
-            <string>Amplitude</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="PN_amplitude">
-           <property name="text">
-            <string>30.0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="lacunarityLabel">
-           <property name="text">
-            <string>Lacunarity</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="PN_lacunarity">
-           <property name="text">
-            <string>2.0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="qualityLabel">
-           <property name="text">
-            <string>Quality</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="PN_quality">
-           <item>
-            <property name="text">
-             <string>Standard</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Fast</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Best</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="persistenceLabel">
-           <property name="text">
-            <string>Persistence</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="PN_persistence">
-           <property name="text">
-            <string>0.5</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="octaveCountLabel">
-           <property name="text">
-            <string>Octave Count</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QLineEdit" name="PN_octaveCount">
-           <property name="text">
-            <string>6</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page">
        <attribute name="label">
         <string>Volcanic</string>
        </attribute>
@@ -523,6 +531,14 @@
        </widget>
       </widget>
       <widget class="QWidget" name="page_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>221</width>
+         <height>269</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Stretch</string>
        </attribute>
