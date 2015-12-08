@@ -80,6 +80,22 @@ public:
     QLineEdit *PN_persistence;
     QLabel *octaveCountLabel;
     QLineEdit *PN_octaveCount;
+    QWidget *page;
+    QWidget *formLayoutWidget_3;
+    QFormLayout *formLayout_3;
+    QLabel *stonesLabel;
+    QLineEdit *Volcanic_Stones;
+    QLabel *stoneSizeMinLabel;
+    QLineEdit *Volcanic_stoneSizeMin;
+    QLabel *stoneSizeMaxLabel;
+    QLineEdit *Volcanic_stoneSizeMax;
+    QLabel *stabilityLabel;
+    QSpinBox *Volcanic_stability;
+    QWidget *page_2;
+    QWidget *formLayoutWidget_4;
+    QFormLayout *formLayout_4;
+    QLabel *radiusLabel;
+    QLineEdit *Stretch_Factor;
     QGroupBox *groupBox_2;
     QLineEdit *seedEdit;
     QWidget *verticalLayoutWidget_2;
@@ -172,10 +188,10 @@ public:
         ModProcessBox->setGeometry(QRect(310, 100, 221, 381));
         Erosion_Page = new QWidget();
         Erosion_Page->setObjectName(QStringLiteral("Erosion_Page"));
-        Erosion_Page->setGeometry(QRect(0, 0, 221, 325));
+        Erosion_Page->setGeometry(QRect(0, 0, 221, 269));
         formLayoutWidget = new QWidget(Erosion_Page);
         formLayoutWidget->setObjectName(QStringLiteral("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(0, 0, 211, 321));
+        formLayoutWidget->setGeometry(QRect(0, 0, 211, 161));
         formLayout = new QFormLayout(formLayoutWidget);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -249,7 +265,7 @@ public:
         ModProcessBox->addItem(Erosion_Page, QStringLiteral("Erosion"));
         PN_Page = new QWidget();
         PN_Page->setObjectName(QStringLiteral("PN_Page"));
-        PN_Page->setGeometry(QRect(0, 0, 221, 325));
+        PN_Page->setGeometry(QRect(0, 0, 221, 269));
         formLayoutWidget_2 = new QWidget(PN_Page);
         formLayoutWidget_2->setObjectName(QStringLiteral("formLayoutWidget_2"));
         formLayoutWidget_2->setGeometry(QRect(0, 0, 211, 171));
@@ -319,6 +335,81 @@ public:
         formLayout_2->setWidget(5, QFormLayout::FieldRole, PN_octaveCount);
 
         ModProcessBox->addItem(PN_Page, QStringLiteral("PerlinNoise"));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        formLayoutWidget_3 = new QWidget(page);
+        formLayoutWidget_3->setObjectName(QStringLiteral("formLayoutWidget_3"));
+        formLayoutWidget_3->setGeometry(QRect(0, 0, 211, 111));
+        formLayout_3 = new QFormLayout(formLayoutWidget_3);
+        formLayout_3->setSpacing(6);
+        formLayout_3->setContentsMargins(11, 11, 11, 11);
+        formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
+        formLayout_3->setContentsMargins(0, 0, 0, 0);
+        stonesLabel = new QLabel(formLayoutWidget_3);
+        stonesLabel->setObjectName(QStringLiteral("stonesLabel"));
+
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, stonesLabel);
+
+        Volcanic_Stones = new QLineEdit(formLayoutWidget_3);
+        Volcanic_Stones->setObjectName(QStringLiteral("Volcanic_Stones"));
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, Volcanic_Stones);
+
+        stoneSizeMinLabel = new QLabel(formLayoutWidget_3);
+        stoneSizeMinLabel->setObjectName(QStringLiteral("stoneSizeMinLabel"));
+
+        formLayout_3->setWidget(1, QFormLayout::LabelRole, stoneSizeMinLabel);
+
+        Volcanic_stoneSizeMin = new QLineEdit(formLayoutWidget_3);
+        Volcanic_stoneSizeMin->setObjectName(QStringLiteral("Volcanic_stoneSizeMin"));
+
+        formLayout_3->setWidget(1, QFormLayout::FieldRole, Volcanic_stoneSizeMin);
+
+        stoneSizeMaxLabel = new QLabel(formLayoutWidget_3);
+        stoneSizeMaxLabel->setObjectName(QStringLiteral("stoneSizeMaxLabel"));
+
+        formLayout_3->setWidget(2, QFormLayout::LabelRole, stoneSizeMaxLabel);
+
+        Volcanic_stoneSizeMax = new QLineEdit(formLayoutWidget_3);
+        Volcanic_stoneSizeMax->setObjectName(QStringLiteral("Volcanic_stoneSizeMax"));
+
+        formLayout_3->setWidget(2, QFormLayout::FieldRole, Volcanic_stoneSizeMax);
+
+        stabilityLabel = new QLabel(formLayoutWidget_3);
+        stabilityLabel->setObjectName(QStringLiteral("stabilityLabel"));
+
+        formLayout_3->setWidget(3, QFormLayout::LabelRole, stabilityLabel);
+
+        Volcanic_stability = new QSpinBox(formLayoutWidget_3);
+        Volcanic_stability->setObjectName(QStringLiteral("Volcanic_stability"));
+        Volcanic_stability->setMinimum(1);
+        Volcanic_stability->setMaximum(4);
+        Volcanic_stability->setValue(2);
+
+        formLayout_3->setWidget(3, QFormLayout::FieldRole, Volcanic_stability);
+
+        ModProcessBox->addItem(page, QStringLiteral("Volcanic"));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        formLayoutWidget_4 = new QWidget(page_2);
+        formLayoutWidget_4->setObjectName(QStringLiteral("formLayoutWidget_4"));
+        formLayoutWidget_4->setGeometry(QRect(0, 0, 211, 31));
+        formLayout_4 = new QFormLayout(formLayoutWidget_4);
+        formLayout_4->setSpacing(6);
+        formLayout_4->setContentsMargins(11, 11, 11, 11);
+        formLayout_4->setObjectName(QStringLiteral("formLayout_4"));
+        formLayout_4->setContentsMargins(0, 0, 0, 0);
+        radiusLabel = new QLabel(formLayoutWidget_4);
+        radiusLabel->setObjectName(QStringLiteral("radiusLabel"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, radiusLabel);
+
+        Stretch_Factor = new QLineEdit(formLayoutWidget_4);
+        Stretch_Factor->setObjectName(QStringLiteral("Stretch_Factor"));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, Stretch_Factor);
+
+        ModProcessBox->addItem(page_2, QStringLiteral("Stretch"));
         groupBox_2 = new QGroupBox(tab);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         groupBox_2->setGeometry(QRect(10, 500, 511, 41));
@@ -355,7 +446,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        ModProcessBox->setCurrentIndex(1);
+        ModProcessBox->setCurrentIndex(3);
         startButton->setDefault(false);
 
 
@@ -399,6 +490,17 @@ public:
         octaveCountLabel->setText(QApplication::translate("MainWindow", "Octave Count", 0));
         PN_octaveCount->setText(QApplication::translate("MainWindow", "6", 0));
         ModProcessBox->setItemText(ModProcessBox->indexOf(PN_Page), QApplication::translate("MainWindow", "PerlinNoise", 0));
+        stonesLabel->setText(QApplication::translate("MainWindow", "Stones", 0));
+        Volcanic_Stones->setText(QApplication::translate("MainWindow", "1000", 0));
+        stoneSizeMinLabel->setText(QApplication::translate("MainWindow", "Stone Size Min", 0));
+        Volcanic_stoneSizeMin->setText(QApplication::translate("MainWindow", "1", 0));
+        stoneSizeMaxLabel->setText(QApplication::translate("MainWindow", "Stone Size Max", 0));
+        Volcanic_stoneSizeMax->setText(QApplication::translate("MainWindow", "10", 0));
+        stabilityLabel->setText(QApplication::translate("MainWindow", "Stability", 0));
+        ModProcessBox->setItemText(ModProcessBox->indexOf(page), QApplication::translate("MainWindow", "Volcanic", 0));
+        radiusLabel->setText(QApplication::translate("MainWindow", "Factor", 0));
+        Stretch_Factor->setText(QApplication::translate("MainWindow", "2", 0));
+        ModProcessBox->setItemText(ModProcessBox->indexOf(page_2), QApplication::translate("MainWindow", "Stretch", 0));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "Seed (keep empty for random seed)", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Heightmap", 0));
         startButton->setText(QApplication::translate("MainWindow", "Start", 0));
