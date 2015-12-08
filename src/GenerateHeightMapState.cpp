@@ -135,24 +135,14 @@ void CGenerateHeightMapState::on_Render() {
 }
 
 bool CGenerateHeightMapState::on_Update(sf::Time t) {
-	sf::Keyboard keyb;
+    sf::Keyboard keyb;
+    if (keyb.isKeyPressed(sf::Keyboard::Escape))
+    {
+        m_pManager->popState();
 
-//	if (keyb.isKeyPressed(sf::Keyboard::Escape) && !was_pressed)
-//	{
-//		CGenerateRoadNetworkState* new_state = new CGenerateRoadNetworkState(m_pMap, m_seed);
-//		new_state->setHeightMap(m_pMap);
-		
-//		sf::RenderTexture* tex = new sf::RenderTexture();
-//		tex->create(800, 800);
-//		tex->clear();
-//		tex->draw(m_map_Sprite);
-//		tex->draw(m_lines_Sprite);
-//		new_state->setBackground(tex->getTexture());
-
-//		m_pManager->switchState(new_state);
-//	}
-	was_pressed = keyb.isKeyPressed(sf::Keyboard::Escape);
-	return true;
+        return false;
+    }
+    return true;
 }
 
 void CGenerateHeightMapState::on_Exit() {

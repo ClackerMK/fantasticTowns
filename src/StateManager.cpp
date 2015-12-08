@@ -40,8 +40,11 @@ void CStateManager::Update(sf::Time t)
 
 			_it = it;
 		}
-		else {
-			it = _it;
+        else {
+            if (m_states.size() == 0)
+                it = m_states.end();
+            else
+                it = _it;
 		}
 	}
 }
@@ -63,6 +66,7 @@ void CStateManager::pushState(CState* state)
 void CStateManager::popState()
 {
 	(*m_states.begin())->on_Exit();
+
 	m_states.pop_front();
 }
 
