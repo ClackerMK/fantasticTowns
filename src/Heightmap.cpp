@@ -1,5 +1,14 @@
 #include "Heightmap.h"
 
+double Cosine_Interpolate(double a, double b, double x)
+{
+    double ft = x * 3.1415927;
+    double f = (1 - cos(ft)) * .5;
+
+    return  a*(1-f) + b*f;
+}
+
+
 // Constructor: Create the Map with the supplied x and y Dimensions and a starting value of 0
 CHeightMap::CHeightMap(int x, int y):
 	m_size(x,y)
@@ -278,13 +287,22 @@ double CHeightMap::m_interpolate(sf::Vector2f pos) const
 	std::pair<int, int> range_x = std::pair<int, int>(std::floor(pos.x), std::ceil(pos.x));
 	std::pair<int, int> range_y = std::pair<int, int>(std::floor(pos.y), std::ceil(pos.y));
 
-	if (range_x.first == range_x.second && range_y.first == range_y.second)
-		return m_map[range_x.first][range_y.first];
 
-	double R1 = ((range_x.second - pos.x) * m_map[range_x.first][range_y.first]) + ((pos.x - range_x.first) * m_map[range_x.second][range_y.first]);
-	double R2 = ((range_x.second - pos.x) * m_map[range_x.first][range_y.second]) + ((pos.x - range_x.first) * m_map[range_x.second][range_y.second]);
+    if (range_x.first < 0)
+        range_x.first = range_x.second = 0;
+    if (range_y.first < 0)
+        range_y.first = range_y.second = 0;
 
-	return ((range_y.second - pos.y) * R1) + ((pos.y - range_y.first)*R2);
+    if (range_x.second >= m_size.x)
+        range_x.first = range_x.second = m_size.x -1;
+    if (range_y.second >= m_size.y)
+        range_y.first = range_y.second = m_size.y -1;
+
+
+    double R1 = Cosine_Interpolate(m_map[range_x.first][range_y.first], m_map[range_x.second][range_y.first], pos.x - range_x.first);
+    double R2 = Cosine_Interpolate(m_map[range_x.first][range_y.second],m_map[range_x.second][range_y.second], pos.x - range_x.first);
+
+    return (Cosine_Interpolate(R1, R2, pos.y-range_y.first));
 } // interpolate()
 
 
