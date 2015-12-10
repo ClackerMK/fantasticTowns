@@ -13,6 +13,7 @@
 #include "../HeightMapModificationProcess.h"
 #include "../HMMP_Erosion.h"
 #include "../HMMP_LibNoise.h"
+#include "../HMMP_Resize.h"
 
 namespace Ui {
 class MainWindow;

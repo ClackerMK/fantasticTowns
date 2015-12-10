@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Volcanic_stoneSizeMax->setValidator(new QIntValidator(0, INT32_MAX, this));
     ui->Volcanic_stoneSizeMin->setValidator(new QIntValidator(0, INT32_MAX, this));
 
-    ui->Stretch_Factor->setValidator(new QIntValidator(0, INT32_MAX, this));
+    ui->Stretch_Factor->setValidator(new QDoubleValidator(0.0, 100.0, 1, this));
 }
 
 MainWindow::~MainWindow()
@@ -132,10 +132,10 @@ void MainWindow::on_addHMP_pressed()
         }
         case 3:
         {
-            hmmp = new HMMP_SmoothStretch();
-            HMMP_SmoothStretch* stretch = dynamic_cast<HMMP_SmoothStretch*>(hmmp);
+            hmmp = new HMMP_Resize();
+            HMMP_Resize* stretch = dynamic_cast<HMMP_Resize*>(hmmp);
 
-            stretch->setFactor(ui->Stretch_Factor->text().toInt());
+            stretch->setFactor(ui->Stretch_Factor->text().toDouble());
 
             ui->listHMMP->addItem("Stretch");
 
