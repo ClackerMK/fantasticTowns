@@ -18,7 +18,6 @@ HEADERS += src/GenerateHeightMapState.h \
            src/HeightMapModificationProcess.h \
            src/HMMP_Erosion.h \
            src/HMMP_LibNoise.h \
-           src/HMMP_SmoothStretch.h \
            src/HMMP_Volcanic.h \
            src/NodeSampleAlgs.h \
            src/SquiglyLine.h \

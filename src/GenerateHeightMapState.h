@@ -15,7 +15,6 @@
 
 #include "HMMP_Volcanic.h"
 #include "HMMP_Erosion.h"
-#include "HMMP_SmoothStretch.h"
 #include "HMMP_LibNoise.h"
 #include "HMMP_Resize.h"
 

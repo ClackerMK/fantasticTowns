@@ -40,10 +40,6 @@ public:
     // Copyconstructor
     CHeightMap(CHeightMap &ref);
 
-	// Smoothing
-	void			smoothStretchHeightMap(int radius);
-	void			smoothHeightMap(int radius);
-	
 	// Drawing
 	void			draw(sf::RenderTarget& trgt, sf::RenderStates states) const;
 
