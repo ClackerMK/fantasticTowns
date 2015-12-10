@@ -26,7 +26,8 @@ HEADERS += src/GenerateHeightMapState.h \
            src/StateManager.h \
            src/utils.h \
            src/ValueNoise.h \
-           src/gui/mainwindow.h
+           src/gui/mainwindow.h \
+    src/HMMP_Resize.h
 FORMS += src/gui/mainwindow.ui
 SOURCES += src/GenerateHeightMapState.cpp \
            src/Heightmap.cpp \
@@ -39,6 +40,7 @@ SOURCES += src/GenerateHeightMapState.cpp \
            src/StateManager.cpp \
            src/utils.cpp \
            src/ValueNoise.cpp \
-           src/gui/mainwindow.cpp
+           src/gui/mainwindow.cpp \
+    src/HMMP_Resize.cpp
 
 LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lopencv_imgproc -lopencv_core -lnoise

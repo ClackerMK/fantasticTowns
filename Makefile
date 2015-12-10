@@ -59,7 +59,8 @@ SOURCES       = src/GenerateHeightMapState.cpp \
 		src/StateManager.cpp \
 		src/utils.cpp \
 		src/ValueNoise.cpp \
-		src/gui/mainwindow.cpp moc_mainwindow.cpp
+		src/gui/mainwindow.cpp \
+		src/HMMP_Resize.cpp moc_mainwindow.cpp
 OBJECTS       = GenerateHeightMapState.o \
 		Heightmap.o \
 		HeightMapGenerator.o \
@@ -72,6 +73,7 @@ OBJECTS       = GenerateHeightMapState.o \
 		utils.o \
 		ValueNoise.o \
 		mainwindow.o \
+		HMMP_Resize.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
@@ -230,7 +232,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		src/StateManager.h \
 		src/utils.h \
 		src/ValueNoise.h \
-		src/gui/mainwindow.h src/GenerateHeightMapState.cpp \
+		src/gui/mainwindow.h \
+		src/HMMP_Resize.h src/GenerateHeightMapState.cpp \
 		src/Heightmap.cpp \
 		src/HeightMapGenerator.cpp \
 		src/HMMP_Erosion.cpp \
@@ -241,7 +244,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		src/StateManager.cpp \
 		src/utils.cpp \
 		src/ValueNoise.cpp \
-		src/gui/mainwindow.cpp
+		src/gui/mainwindow.cpp \
+		src/HMMP_Resize.cpp
 QMAKE_TARGET  = fantasticTowns
 DESTDIR       = bin/#avoid trailing-slash linebreak
 TARGET        = bin/fantasticTowns
@@ -582,8 +586,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents src/GenerateHeightMapState.h src/Heightmap.h src/HeightMapGenerator.h src/HeightMapModificationProcess.h src/HMMP_Erosion.h src/HMMP_LibNoise.h src/HMMP_SmoothStretch.h src/HMMP_Volcanic.h src/NodeSampleAlgs.h src/SquiglyLine.h src/State.h src/StateManager.h src/utils.h src/ValueNoise.h src/gui/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/GenerateHeightMapState.cpp src/Heightmap.cpp src/HeightMapGenerator.cpp src/HMMP_Erosion.cpp src/HMMP_Volcanic.cpp src/main.cpp src/NodeSampleAlgs.cpp src/SquiglyLine.cpp src/StateManager.cpp src/utils.cpp src/ValueNoise.cpp src/gui/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/GenerateHeightMapState.h src/Heightmap.h src/HeightMapGenerator.h src/HeightMapModificationProcess.h src/HMMP_Erosion.h src/HMMP_LibNoise.h src/HMMP_SmoothStretch.h src/HMMP_Volcanic.h src/NodeSampleAlgs.h src/SquiglyLine.h src/State.h src/StateManager.h src/utils.h src/ValueNoise.h src/gui/mainwindow.h src/HMMP_Resize.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/GenerateHeightMapState.cpp src/Heightmap.cpp src/HeightMapGenerator.cpp src/HMMP_Erosion.cpp src/HMMP_Volcanic.cpp src/main.cpp src/NodeSampleAlgs.cpp src/SquiglyLine.cpp src/StateManager.cpp src/utils.cpp src/ValueNoise.cpp src/gui/mainwindow.cpp src/HMMP_Resize.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents src/gui/mainwindow.ui $(DISTDIR)/
 
 
@@ -610,7 +614,18 @@ compiler_rcc_clean:
 compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
-moc_mainwindow.cpp: src/gui/mainwindow.h
+moc_mainwindow.cpp: src/StateManager.h \
+		src/State.h \
+		src/GenerateHeightMapState.h \
+		src/Heightmap.h \
+		src/HeightMapGenerator.h \
+		src/HeightMapModificationProcess.h \
+		src/HMMP_Volcanic.h \
+		src/HMMP_Erosion.h \
+		src/HMMP_SmoothStretch.h \
+		src/HMMP_LibNoise.h \
+		src/HMMP_Resize.h \
+		src/gui/mainwindow.h
 	/usr/lib/qt/bin/moc $(DEFINES) -I/usr/lib/qt/mkspecs/linux-g++ -I/home/dave/Projects/fantasticTowns -I/home/dave/Projects/fantasticTowns -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/5.2.0 -I/usr/include/c++/5.2.0/x86_64-unknown-linux-gnu -I/usr/include/c++/5.2.0/backward -I/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include-fixed -I/usr/include src/gui/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
@@ -641,6 +656,7 @@ GenerateHeightMapState.o: src/GenerateHeightMapState.cpp src/GenerateHeightMapSt
 		src/HMMP_Erosion.h \
 		src/HMMP_SmoothStretch.h \
 		src/HMMP_LibNoise.h \
+		src/HMMP_Resize.h \
 		src/SquiglyLine.h \
 		src/ValueNoise.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GenerateHeightMapState.o src/GenerateHeightMapState.cpp
@@ -663,7 +679,8 @@ HMMP_Volcanic.o: src/HMMP_Volcanic.cpp src/HMMP_Volcanic.h \
 		src/Heightmap.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HMMP_Volcanic.o src/HMMP_Volcanic.cpp
 
-main.o: src/main.cpp src/StateManager.h \
+main.o: src/main.cpp src/gui/mainwindow.h \
+		src/StateManager.h \
 		src/State.h \
 		src/GenerateHeightMapState.h \
 		src/Heightmap.h \
@@ -673,7 +690,7 @@ main.o: src/main.cpp src/StateManager.h \
 		src/HMMP_Erosion.h \
 		src/HMMP_SmoothStretch.h \
 		src/HMMP_LibNoise.h \
-		src/gui/mainwindow.h
+		src/HMMP_Resize.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o src/main.cpp
 
 NodeSampleAlgs.o: src/NodeSampleAlgs.cpp src/NodeSampleAlgs.h
@@ -694,8 +711,24 @@ ValueNoise.o: src/ValueNoise.cpp src/ValueNoise.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ValueNoise.o src/ValueNoise.cpp
 
 mainwindow.o: src/gui/mainwindow.cpp src/gui/mainwindow.h \
-		ui_mainwindow.h
+		src/StateManager.h \
+		src/State.h \
+		src/GenerateHeightMapState.h \
+		src/Heightmap.h \
+		src/HeightMapGenerator.h \
+		src/HeightMapModificationProcess.h \
+		src/HMMP_Volcanic.h \
+		src/HMMP_Erosion.h \
+		src/HMMP_SmoothStretch.h \
+		src/HMMP_LibNoise.h \
+		src/HMMP_Resize.h \
+		build-fantasticTowns-Desktop-Debug/ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o src/gui/mainwindow.cpp
+
+HMMP_Resize.o: src/HMMP_Resize.cpp src/HMMP_Resize.h \
+		src/HeightMapModificationProcess.h \
+		src/Heightmap.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HMMP_Resize.o src/HMMP_Resize.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
