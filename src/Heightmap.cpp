@@ -44,21 +44,45 @@ CHeightMap::CHeightMap(CHeightMap &ref) :
     m_cached_medianEle(ref.m_cached_medianEle),
     m_cached_minEle(ref.m_cached_minEle)
 {
+
+    m_map = new double*[ref.getSize().x];
+    for (int ix = 0; ix < ref.getSize().x; ix++)
+    {
+        m_map[ix] = new double[ref.getSize().y];
+        for (int iy = 0; iy < ref.getSize().y; iy++)
+        {
+            m_map[ix][iy] = ref.getValue(sf::Vector2i(ix,iy));
+        }
+    }
+} // Copyconstructor
+
+// Assign Operator
+CHeightMap& CHeightMap::operator =(CHeightMap& map)
+{
+
     for (int x = 0; x < m_size.x; x++)
     {
         delete[] m_map[x];
     }
     delete[] m_map;
 
-    for (int ix = 0; ix < ref.getSize().x; ix++)
+    m_map = new double*[map.getSize().x];
+    for (int ix = 0; ix < map.getSize().x; ix++)
     {
-        m_map[ix] = new double[y];
-        for (int iy = 0; iy < ref.getSize().y; iy++)
+        m_map[ix] = new double[map.getSize().y];
+        for (int iy = 0; iy < map.getSize().y; iy++)
         {
-            m_map[ix][iy] = ref.getValue(sf::Vector2i(x,y));
+            m_map[ix][iy] = map.getValue(sf::Vector2i(ix,iy));
         }
     }
-}
+
+    m_drawingSize = map.m_drawingSize;
+    m_size = map.m_size;
+    m_cached_maxEle = map.m_cached_maxEle;
+    m_cached_meanEle = map.m_cached_meanEle;
+    m_cached_medianEle = map.m_cached_medianEle;
+
+} //Assign Operator
 
 // getMaxEle()
 // Returns the maximum Elevation of the entire Map and caches the Value

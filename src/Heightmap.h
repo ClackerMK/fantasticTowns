@@ -74,5 +74,7 @@ public:
 		m_cached_medianEle.valid = false;
 	}
 	void setDrawingSize(int size) { m_drawingSize = size; }
+
+    CHeightMap& operator =(CHeightMap&);
 };
 
