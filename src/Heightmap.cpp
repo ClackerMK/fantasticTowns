@@ -1,11 +1,9 @@
 #include "Heightmap.h"
 
-double Cosine_Interpolate(double a, double b, double x)
+double Interpolate(double a, double b, double x)
 {
-    double ft = x * 3.1415927;
-    double f = (1 - cos(ft)) * .5;
 
-    return  a*(1-f) + b*f;
+    return  a*(1-x) + b*x;
 }
 
 
@@ -240,10 +238,10 @@ double CHeightMap::m_interpolate(sf::Vector2f pos) const
         range_y.first = range_y.second = m_size.y -1;
 
 
-    double R1 = Cosine_Interpolate(m_map[range_x.first][range_y.first], m_map[range_x.second][range_y.first], pos.x - range_x.first);
-    double R2 = Cosine_Interpolate(m_map[range_x.first][range_y.second],m_map[range_x.second][range_y.second], pos.x - range_x.first);
+    double R1 = Interpolate(m_map[range_x.first][range_y.first], m_map[range_x.second][range_y.first], pos.x - range_x.first);
+    double R2 = Interpolate(m_map[range_x.first][range_y.second],m_map[range_x.second][range_y.second], pos.x - range_x.first);
 
-    return (Cosine_Interpolate(R1, R2, pos.y-range_y.first));
+    return (Interpolate(R1, R2, pos.y-range_y.first));
 } // interpolate()
 
 
