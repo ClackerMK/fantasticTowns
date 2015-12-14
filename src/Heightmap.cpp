@@ -82,6 +82,7 @@ CHeightMap& CHeightMap::operator =(CHeightMap& map)
     m_cached_meanEle = map.m_cached_meanEle;
     m_cached_medianEle = map.m_cached_medianEle;
 
+    return *this;
 } //Assign Operator
 
 // getMaxEle()
