@@ -142,13 +142,33 @@ void MainWindow::on_addHMP_pressed()
             break;
         }
     }
-
-
-
+    // Add to processes
     m_processes.push_back(hmmp);
+
+    // Unlock remove Button
+    ui->deleteHMMP->setEnabled(true);
+
 }
 
 void MainWindow::on_deleteHMMP_pressed()
 {
+    /* Current selected Items
+    QList<QListWidgetItem *> itemList = ui->listHMMP->selectedItems();
 
+    for (int i=0; i<itemList.size(); i++) {
+        int index = ui->listHMMP->indexFromItem(itemList[i]);
+
+
+        widget->takeItem(index);
+
+    }*/
+    // Remove Last Item
+    m_processes.pop_back();
+    ui->listHMMP->takeItem(ui->listHMMP->count()-1);
+
+    // If no HMMPs left disable Button
+    if (ui->listHMMP->count() == 0)
+    {
+        ui->deleteHMMP->setEnabled(false);
+    }
 }
